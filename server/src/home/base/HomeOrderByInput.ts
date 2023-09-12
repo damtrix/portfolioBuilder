@@ -83,15 +83,6 @@ class HomeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  @ApiProperty({
-    required: false,
-    enum: ['asc', 'desc'],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   userId?: SortOrder;
 }
 

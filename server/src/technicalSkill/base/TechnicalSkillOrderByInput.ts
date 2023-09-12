@@ -83,7 +83,7 @@ class TechnicalSkillOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  usersId?: SortOrder;
+  userId?: SortOrder;
 }
 
 export { TechnicalSkillOrderByInput as TechnicalSkillOrderByInput };

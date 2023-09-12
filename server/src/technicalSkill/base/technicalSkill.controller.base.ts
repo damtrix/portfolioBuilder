@@ -53,9 +53,9 @@ export class TechnicalSkillControllerBase {
       data: {
         ...data,
 
-        users: data.users
+        user: data.user
           ? {
-              connect: data.users,
+              connect: data.user,
             }
           : undefined,
       },
@@ -66,7 +66,7 @@ export class TechnicalSkillControllerBase {
         updatedAt: true,
         url: true,
 
-        users: {
+        user: {
           select: {
             id: true,
           },
@@ -98,7 +98,7 @@ export class TechnicalSkillControllerBase {
         updatedAt: true,
         url: true,
 
-        users: {
+        user: {
           select: {
             id: true,
           },
@@ -131,7 +131,7 @@ export class TechnicalSkillControllerBase {
         updatedAt: true,
         url: true,
 
-        users: {
+        user: {
           select: {
             id: true,
           },
@@ -168,9 +168,9 @@ export class TechnicalSkillControllerBase {
         data: {
           ...data,
 
-          users: data.users
+          user: data.user
             ? {
-                connect: data.users,
+                connect: data.user,
               }
             : undefined,
         },
@@ -181,7 +181,7 @@ export class TechnicalSkillControllerBase {
           updatedAt: true,
           url: true,
 
-          users: {
+          user: {
             select: {
               id: true,
             },
@@ -222,7 +222,7 @@ export class TechnicalSkillControllerBase {
           updatedAt: true,
           url: true,
 
-          users: {
+          user: {
             select: {
               id: true,
             },

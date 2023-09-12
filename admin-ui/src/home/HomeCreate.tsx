@@ -18,7 +18,6 @@ export const HomeCreate = (props: CreateProps): React.ReactElement => {
         <ReferenceInput source="user.id" reference="User" label="User">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
-        <TextInput label="User Id" source="userId" />
       </SimpleForm>
     </Create>
   );

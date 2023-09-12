@@ -10,5 +10,4 @@ export type HomeWhereInput = {
   topBgImage?: StringNullableFilter;
   updatedAt?: DateTimeFilter;
   user?: UserWhereUniqueInput;
-  userId?: StringNullableFilter;
 };

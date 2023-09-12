@@ -96,9 +96,9 @@ export class TechnicalSkillResolverBase {
       data: {
         ...args.data,
 
-        users: args.data.users
+        user: args.data.user
           ? {
-              connect: args.data.users,
+              connect: args.data.user,
             }
           : undefined,
       },
@@ -121,9 +121,9 @@ export class TechnicalSkillResolverBase {
         data: {
           ...args.data,
 
-          users: args.data.users
+          user: args.data.user
             ? {
-                connect: args.data.users,
+                connect: args.data.user,
               }
             : undefined,
         },
@@ -162,17 +162,17 @@ export class TechnicalSkillResolverBase {
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => User, {
     nullable: true,
-    name: "users",
+    name: "user",
   })
   @nestAccessControl.UseRoles({
     resource: "User",
     action: "read",
     possession: "any",
   })
-  async resolveFieldUsers(
+  async resolveFieldUser(
     @graphql.Parent() parent: TechnicalSkill
   ): Promise<User | null> {
-    const result = await this.service.getUsers(parent.id);
+    const result = await this.service.getUser(parent.id);
 
     if (!result) {
       return null;

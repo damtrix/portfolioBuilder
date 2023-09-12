@@ -25,7 +25,7 @@ export const TechnicalSkillList = (props: ListProps): React.ReactElement => {
         <TextField label="Name" source="name" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="Url" source="url" />
-        <ReferenceField label="Users" source="user.id" reference="User">
+        <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />
         </ReferenceField>
       </Datagrid>

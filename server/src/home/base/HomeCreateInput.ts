@@ -50,17 +50,6 @@ class HomeCreateInput {
     nullable: true,
   })
   user?: UserWhereUniqueInput | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  userId?: string | null;
 }
 
 export { HomeCreateInput as HomeCreateInput };
