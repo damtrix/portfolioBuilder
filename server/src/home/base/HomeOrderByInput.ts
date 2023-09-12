@@ -9,10 +9,10 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { InputType, Field } from "@nestjs/graphql";
-import { ApiProperty } from "@nestjs/swagger";
-import { IsOptional, IsEnum } from "class-validator";
-import { SortOrder } from "../../util/SortOrder";
+import { InputType, Field } from '@nestjs/graphql';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsOptional, IsEnum } from 'class-validator';
+import { SortOrder } from '../../util/SortOrder';
 
 @InputType({
   isAbstract: true,
@@ -21,7 +21,7 @@ import { SortOrder } from "../../util/SortOrder";
 class HomeOrderByInput {
   @ApiProperty({
     required: false,
-    enum: ["asc", "desc"],
+    enum: ['asc', 'desc'],
   })
   @IsOptional()
   @IsEnum(SortOrder)
@@ -32,7 +32,7 @@ class HomeOrderByInput {
 
   @ApiProperty({
     required: false,
-    enum: ["asc", "desc"],
+    enum: ['asc', 'desc'],
   })
   @IsOptional()
   @IsEnum(SortOrder)
@@ -43,7 +43,7 @@ class HomeOrderByInput {
 
   @ApiProperty({
     required: false,
-    enum: ["asc", "desc"],
+    enum: ['asc', 'desc'],
   })
   @IsOptional()
   @IsEnum(SortOrder)
@@ -54,7 +54,7 @@ class HomeOrderByInput {
 
   @ApiProperty({
     required: false,
-    enum: ["asc", "desc"],
+    enum: ['asc', 'desc'],
   })
   @IsOptional()
   @IsEnum(SortOrder)
@@ -65,7 +65,7 @@ class HomeOrderByInput {
 
   @ApiProperty({
     required: false,
-    enum: ["asc", "desc"],
+    enum: ['asc', 'desc'],
   })
   @IsOptional()
   @IsEnum(SortOrder)
@@ -76,18 +76,16 @@ class HomeOrderByInput {
 
   @ApiProperty({
     required: false,
-    enum: ["asc", "desc"],
+    enum: ['asc', 'desc'],
   })
   @IsOptional()
   @IsEnum(SortOrder)
   @Field(() => SortOrder, {
     nullable: true,
   })
-  userId?: SortOrder;
-
   @ApiProperty({
     required: false,
-    enum: ["asc", "desc"],
+    enum: ['asc', 'desc'],
   })
   @IsOptional()
   @IsEnum(SortOrder)
