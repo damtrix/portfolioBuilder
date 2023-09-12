@@ -49,7 +49,7 @@ class TechnicalSkillUpdateInput {
   @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  users?: UserWhereUniqueInput | null;
+  user?: UserWhereUniqueInput | null;
 }
 
 export { TechnicalSkillUpdateInput as TechnicalSkillUpdateInput };

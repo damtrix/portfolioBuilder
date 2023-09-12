@@ -9,5 +9,5 @@ export type TechnicalSkillWhereInput = {
   name?: StringNullableFilter;
   updatedAt?: DateTimeFilter;
   url?: StringFilter;
-  users?: UserWhereUniqueInput;
+  user?: UserWhereUniqueInput;
 };

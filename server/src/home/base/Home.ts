@@ -71,17 +71,6 @@ class Home {
   @Type(() => User)
   @IsOptional()
   user?: User | null;
-
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
-    nullable: true,
-  })
-  userId!: string | null;
 }
 
 export { Home as Home };

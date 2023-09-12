@@ -7,5 +7,4 @@ export type HomeOrderByInput = {
   topBgImage?: SortOrder;
   updatedAt?: SortOrder;
   userId?: SortOrder;
-  userId?: SortOrder;
 };

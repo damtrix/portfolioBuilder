@@ -17,7 +17,7 @@ export const TechnicalSkillCreate = (
       <SimpleForm>
         <TextInput label="Name" source="name" />
         <TextInput label="Url" source="url" />
-        <ReferenceInput source="users.id" reference="User" label="Users">
+        <ReferenceInput source="user.id" reference="User" label="User">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>
       </SimpleForm>
