@@ -6,5 +6,5 @@ export type TechnicalSkill = {
   name: string | null;
   updatedAt: Date;
   url: string;
-  users?: User | null;
+  user?: User | null;
 };

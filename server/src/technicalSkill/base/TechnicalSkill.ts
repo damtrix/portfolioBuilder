@@ -67,7 +67,7 @@ class TechnicalSkill {
   @ValidateNested()
   @Type(() => User)
   @IsOptional()
-  users?: User | null;
+  user?: User | null;
 }
 
 export { TechnicalSkill as TechnicalSkill };

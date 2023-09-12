@@ -86,17 +86,6 @@ class HomeWhereInput {
     nullable: true,
   })
   user?: UserWhereUniqueInput;
-
-  @ApiProperty({
-    required: false,
-    type: StringNullableFilter,
-  })
-  @Type(() => StringNullableFilter)
-  @IsOptional()
-  @Field(() => StringNullableFilter, {
-    nullable: true,
-  })
-  userId?: StringNullableFilter;
 }
 
 export { HomeWhereInput as HomeWhereInput };

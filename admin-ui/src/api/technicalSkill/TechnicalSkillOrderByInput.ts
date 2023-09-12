@@ -6,5 +6,5 @@ export type TechnicalSkillOrderByInput = {
   name?: SortOrder;
   updatedAt?: SortOrder;
   url?: SortOrder;
-  usersId?: SortOrder;
+  userId?: SortOrder;
 };

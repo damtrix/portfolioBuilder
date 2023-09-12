@@ -69,8 +69,6 @@ export class HomeControllerBase {
             id: true,
           },
         },
-
-        userId: true,
       },
     });
   }
@@ -103,8 +101,6 @@ export class HomeControllerBase {
             id: true,
           },
         },
-
-        userId: true,
       },
     });
   }
@@ -138,8 +134,6 @@ export class HomeControllerBase {
             id: true,
           },
         },
-
-        userId: true,
       },
     });
     if (result === null) {
@@ -190,8 +184,6 @@ export class HomeControllerBase {
               id: true,
             },
           },
-
-          userId: true,
         },
       });
     } catch (error) {
@@ -233,8 +225,6 @@ export class HomeControllerBase {
               id: true,
             },
           },
-
-          userId: true,
         },
       });
     } catch (error) {

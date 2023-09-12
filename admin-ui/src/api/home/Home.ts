@@ -7,5 +7,4 @@ export type Home = {
   topBgImage: string | null;
   updatedAt: Date;
   user?: User | null;
-  userId: string | null;
 };

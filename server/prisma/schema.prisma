@@ -35,8 +35,8 @@ model TechnicalSkill {
   name      String?
   updatedAt DateTime @updatedAt
   url       String
-  users     User?    @relation(fields: [usersId], references: [id])
-  usersId   String?  @unique
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @unique
 }
 
 model Home {
@@ -46,7 +46,6 @@ model Home {
   topBgImage String?
   updatedAt  DateTime @updatedAt
   user       User?    @relation(fields: [userId], references: [id])
-  userId     String?  @unique
   userId     String?  @unique
 }
 

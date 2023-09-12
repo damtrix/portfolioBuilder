@@ -85,7 +85,7 @@ class TechnicalSkillWhereInput {
   @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  users?: UserWhereUniqueInput;
+  user?: UserWhereUniqueInput;
 }
 
 export { TechnicalSkillWhereInput as TechnicalSkillWhereInput };

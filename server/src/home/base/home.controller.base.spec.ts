@@ -24,7 +24,6 @@ const CREATE_INPUT = {
   logo: "exampleLogo",
   topBgImage: "exampleTopBgImage",
   updatedAt: new Date(),
-  userId: "exampleUserId",
 };
 const CREATE_RESULT = {
   createdAt: new Date(),
@@ -32,7 +31,6 @@ const CREATE_RESULT = {
   logo: "exampleLogo",
   topBgImage: "exampleTopBgImage",
   updatedAt: new Date(),
-  userId: "exampleUserId",
 };
 const FIND_MANY_RESULT = [
   {
@@ -41,7 +39,6 @@ const FIND_MANY_RESULT = [
     logo: "exampleLogo",
     topBgImage: "exampleTopBgImage",
     updatedAt: new Date(),
-    userId: "exampleUserId",
   },
 ];
 const FIND_ONE_RESULT = {
@@ -50,7 +47,6 @@ const FIND_ONE_RESULT = {
   logo: "exampleLogo",
   topBgImage: "exampleTopBgImage",
   updatedAt: new Date(),
-  userId: "exampleUserId",
 };
 
 const service = {

@@ -47,11 +47,11 @@ export class TechnicalSkillServiceBase {
     return this.prisma.technicalSkill.delete(args);
   }
 
-  async getUsers(parentId: string): Promise<User | null> {
+  async getUser(parentId: string): Promise<User | null> {
     return this.prisma.technicalSkill
       .findUnique({
         where: { id: parentId },
       })
-      .users();
+      .user();
   }
 }
