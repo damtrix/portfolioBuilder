@@ -1,0 +1,75 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  aboutMe         String
+  createdAt       DateTime        @default(now())
+  email           String
+  firstName       String?
+  githubLink      String?
+  home            Home?
+  id              String          @id @default(cuid())
+  image           String
+  lastName        String?
+  linkedinLink    String?
+  message         String
+  password        String
+  portfolios      Portfolio[]
+  roles           Json
+  speciality      String
+  technicalSkills TechnicalSkill?
+  twitterLink     String?
+  updatedAt       DateTime        @updatedAt
+  username        String          @unique
+}
+
+model TechnicalSkill {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String?
+  updatedAt DateTime @updatedAt
+  url       String
+  users     User?    @relation(fields: [usersId], references: [id])
+  usersId   String?  @unique
+}
+
+model Home {
+  createdAt  DateTime @default(now())
+  id         String   @id @default(cuid())
+  logo       String?
+  topBgImage String?
+  updatedAt  DateTime @updatedAt
+  user       User?    @relation(fields: [userId], references: [id])
+  userId     String?  @unique
+  userId     String?  @unique
+}
+
+model Language {
+  acronym      String
+  createdAt    DateTime   @default(now())
+  id           String     @id @default(cuid())
+  name         String
+  portfolios   Portfolio? @relation(fields: [portfoliosId], references: [id])
+  portfoliosId String?
+  updatedAt    DateTime   @updatedAt
+}
+
+model Portfolio {
+  category  String
+  createdAt DateTime   @default(now())
+  githubUrl String     @map("GithubUrl")
+  id        String     @id @default(cuid())
+  image     String
+  info      String?
+  language  Language[]
+  liveUrl   String?
+  updatedAt DateTime   @updatedAt
+  user      User?      @relation(fields: [userId], references: [id])
+  userId    String?
+}
