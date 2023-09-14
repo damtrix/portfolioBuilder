@@ -3,5 +3,5 @@ import { PortfolioWhereUniqueInput } from "../portfolio/PortfolioWhereUniqueInpu
 export type LanguageUpdateInput = {
   acronym?: string;
   name?: string;
-  portfolios?: PortfolioWhereUniqueInput | null;
+  portfolios?: PortfolioWhereUniqueInput;
 };

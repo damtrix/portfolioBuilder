@@ -51,11 +51,9 @@ export class LanguageControllerBase {
       data: {
         ...data,
 
-        portfolios: data.portfolios
-          ? {
-              connect: data.portfolios,
-            }
-          : undefined,
+        portfolios: {
+          connect: data.portfolios,
+        },
       },
       select: {
         acronym: true,
@@ -169,11 +167,9 @@ export class LanguageControllerBase {
         data: {
           ...data,
 
-          portfolios: data.portfolios
-            ? {
-                connect: data.portfolios,
-              }
-            : undefined,
+          portfolios: {
+            connect: data.portfolios,
+          },
         },
         select: {
           acronym: true,

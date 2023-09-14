@@ -1,14 +1,14 @@
-import { HomeWhereUniqueInput } from "../home/HomeWhereUniqueInput";
+import { HomeCreateNestedManyWithoutUsersInput } from "./HomeCreateNestedManyWithoutUsersInput";
 import { PortfolioCreateNestedManyWithoutUsersInput } from "./PortfolioCreateNestedManyWithoutUsersInput";
 import { InputJsonValue } from "../../types";
-import { TechnicalSkillWhereUniqueInput } from "../technicalSkill/TechnicalSkillWhereUniqueInput";
+import { TechnicalSkillCreateNestedManyWithoutUsersInput } from "./TechnicalSkillCreateNestedManyWithoutUsersInput";
 
 export type UserCreateInput = {
   aboutMe: string;
   email: string;
   firstName?: string | null;
   githubLink?: string | null;
-  home?: HomeWhereUniqueInput | null;
+  home?: HomeCreateNestedManyWithoutUsersInput;
   image: string;
   lastName?: string | null;
   linkedinLink?: string | null;
@@ -17,7 +17,7 @@ export type UserCreateInput = {
   portfolios?: PortfolioCreateNestedManyWithoutUsersInput;
   roles: InputJsonValue;
   speciality: string;
-  technicalSkills?: TechnicalSkillWhereUniqueInput | null;
+  technicalSkills?: TechnicalSkillCreateNestedManyWithoutUsersInput;
   twitterLink?: string | null;
   username: string;
 };

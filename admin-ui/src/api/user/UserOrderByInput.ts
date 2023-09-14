@@ -6,7 +6,6 @@ export type UserOrderByInput = {
   email?: SortOrder;
   firstName?: SortOrder;
   githubLink?: SortOrder;
-  homeId?: SortOrder;
   id?: SortOrder;
   image?: SortOrder;
   lastName?: SortOrder;
@@ -15,7 +14,6 @@ export type UserOrderByInput = {
   password?: SortOrder;
   roles?: SortOrder;
   speciality?: SortOrder;
-  technicalSkillsId?: SortOrder;
   twitterLink?: SortOrder;
   updatedAt?: SortOrder;
   username?: SortOrder;

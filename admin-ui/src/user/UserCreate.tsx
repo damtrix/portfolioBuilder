@@ -5,11 +5,9 @@ import {
   SimpleForm,
   CreateProps,
   TextInput,
-  ReferenceInput,
-  SelectInput,
-  PasswordInput,
   ReferenceArrayInput,
   SelectArrayInput,
+  PasswordInput,
 } from "react-admin";
 
 import { HomeTitle } from "../home/HomeTitle";
@@ -25,9 +23,14 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
         <TextInput label="Email" source="email" type="email" />
         <TextInput label="First Name" source="firstName" />
         <TextInput label="Github Link" source="githubLink" />
-        <ReferenceInput source="home.id" reference="Home" label="Home">
-          <SelectInput optionText={HomeTitle} />
-        </ReferenceInput>
+        <ReferenceArrayInput
+          source="home"
+          reference="Home"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={HomeTitle} />
+        </ReferenceArrayInput>
         <TextInput label="Image" source="image" />
         <TextInput label="Last Name" source="lastName" />
         <TextInput label="Linkedin Link" source="linkedinLink" />
@@ -48,13 +51,14 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
           optionValue="value"
         />
         <TextInput label="Speciality" source="speciality" />
-        <ReferenceInput
-          source="technicalSkills.id"
+        <ReferenceArrayInput
+          source="technicalSkills"
           reference="TechnicalSkill"
-          label="Technical Skills"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectInput optionText={TechnicalSkillTitle} />
-        </ReferenceInput>
+          <SelectArrayInput optionText={TechnicalSkillTitle} />
+        </ReferenceArrayInput>
         <TextInput label="Twitter Link" source="twitterLink" />
         <TextInput label="Username" source="username" />
       </SimpleForm>

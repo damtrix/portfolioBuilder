@@ -10,43 +10,37 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
+import { HomeWhereUniqueInput } from "../../home/base/HomeWhereUniqueInput";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { UserWhereUniqueInput } from "../../user/base/UserWhereUniqueInput";
-import { Type } from "class-transformer";
 
 @InputType()
-class HomeCreateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
+class HomeUpdateManyWithoutUsersInput {
+  @Field(() => [HomeWhereUniqueInput], {
     nullable: true,
   })
-  logo?: string | null;
-
   @ApiProperty({
     required: false,
-    type: String,
+    type: () => [HomeWhereUniqueInput],
   })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
+  connect?: Array<HomeWhereUniqueInput>;
+
+  @Field(() => [HomeWhereUniqueInput], {
     nullable: true,
   })
-  topBgImage?: string | null;
-
   @ApiProperty({
-    required: true,
-    type: () => UserWhereUniqueInput,
+    required: false,
+    type: () => [HomeWhereUniqueInput],
   })
-  @ValidateNested()
-  @Type(() => UserWhereUniqueInput)
-  @Field(() => UserWhereUniqueInput)
-  user!: UserWhereUniqueInput;
+  disconnect?: Array<HomeWhereUniqueInput>;
+
+  @Field(() => [HomeWhereUniqueInput], {
+    nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: () => [HomeWhereUniqueInput],
+  })
+  set?: Array<HomeWhereUniqueInput>;
 }
 
-export { HomeCreateInput as HomeCreateInput };
+export { HomeUpdateManyWithoutUsersInput as HomeUpdateManyWithoutUsersInput };

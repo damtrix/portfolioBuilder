@@ -8,5 +8,5 @@ export type PortfolioUpdateInput = {
   info?: string | null;
   language?: LanguageUpdateManyWithoutPortfoliosInput;
   liveUrl?: string | null;
-  user?: UserWhereUniqueInput | null;
+  user?: UserWhereUniqueInput;
 };

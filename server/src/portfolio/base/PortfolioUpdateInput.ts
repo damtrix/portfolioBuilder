@@ -95,7 +95,7 @@ class PortfolioUpdateInput {
   @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  user?: UserWhereUniqueInput | null;
+  user?: UserWhereUniqueInput;
 }
 
 export { PortfolioUpdateInput as PortfolioUpdateInput };

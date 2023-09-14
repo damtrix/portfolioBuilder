@@ -54,7 +54,7 @@ class PortfolioCreateInput {
   info?: string | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => LanguageCreateNestedManyWithoutPortfoliosInput,
   })
   @ValidateNested()
@@ -77,16 +77,13 @@ class PortfolioCreateInput {
   liveUrl?: string | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => UserWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  user?: UserWhereUniqueInput | null;
+  @Field(() => UserWhereUniqueInput)
+  user!: UserWhereUniqueInput;
 }
 
 export { PortfolioCreateInput as PortfolioCreateInput };

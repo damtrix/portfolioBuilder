@@ -96,11 +96,9 @@ export class TechnicalSkillResolverBase {
       data: {
         ...args.data,
 
-        user: args.data.user
-          ? {
-              connect: args.data.user,
-            }
-          : undefined,
+        user: {
+          connect: args.data.user,
+        },
       },
     });
   }
@@ -121,11 +119,9 @@ export class TechnicalSkillResolverBase {
         data: {
           ...args.data,
 
-          user: args.data.user
-            ? {
-                connect: args.data.user,
-              }
-            : undefined,
+          user: {
+            connect: args.data.user,
+          },
         },
       });
     } catch (error) {

@@ -15,9 +15,9 @@ import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { HomeWhereUniqueInput } from "../../home/base/HomeWhereUniqueInput";
+import { HomeListRelationFilter } from "../../home/base/HomeListRelationFilter";
 import { PortfolioListRelationFilter } from "../../portfolio/base/PortfolioListRelationFilter";
-import { TechnicalSkillWhereUniqueInput } from "../../technicalSkill/base/TechnicalSkillWhereUniqueInput";
+import { TechnicalSkillListRelationFilter } from "../../technicalSkill/base/TechnicalSkillListRelationFilter";
 
 @InputType()
 class UserWhereInput {
@@ -67,15 +67,15 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => HomeWhereUniqueInput,
+    type: () => HomeListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => HomeWhereUniqueInput)
+  @Type(() => HomeListRelationFilter)
   @IsOptional()
-  @Field(() => HomeWhereUniqueInput, {
+  @Field(() => HomeListRelationFilter, {
     nullable: true,
   })
-  home?: HomeWhereUniqueInput;
+  home?: HomeListRelationFilter;
 
   @ApiProperty({
     required: false,
@@ -157,15 +157,15 @@ class UserWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => TechnicalSkillWhereUniqueInput,
+    type: () => TechnicalSkillListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => TechnicalSkillWhereUniqueInput)
+  @Type(() => TechnicalSkillListRelationFilter)
   @IsOptional()
-  @Field(() => TechnicalSkillWhereUniqueInput, {
+  @Field(() => TechnicalSkillListRelationFilter, {
     nullable: true,
   })
-  technicalSkills?: TechnicalSkillWhereUniqueInput;
+  technicalSkills?: TechnicalSkillListRelationFilter;
 
   @ApiProperty({
     required: false,

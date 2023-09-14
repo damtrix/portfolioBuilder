@@ -70,12 +70,12 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => Home,
+    type: () => [Home],
   })
   @ValidateNested()
   @Type(() => Home)
   @IsOptional()
-  home?: Home | null;
+  home?: Array<Home>;
 
   @ApiProperty({
     required: true,
@@ -149,12 +149,12 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => TechnicalSkill,
+    type: () => [TechnicalSkill],
   })
   @ValidateNested()
   @Type(() => TechnicalSkill)
   @IsOptional()
-  technicalSkills?: TechnicalSkill | null;
+  technicalSkills?: Array<TechnicalSkill>;
 
   @ApiProperty({
     required: false,

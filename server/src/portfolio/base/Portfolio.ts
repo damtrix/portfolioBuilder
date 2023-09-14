@@ -70,7 +70,7 @@ class Portfolio {
   info!: string | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => [Language],
   })
   @ValidateNested()
@@ -98,13 +98,12 @@ class Portfolio {
   updatedAt!: Date;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => User,
   })
   @ValidateNested()
   @Type(() => User)
-  @IsOptional()
-  user?: User | null;
+  user?: User;
 }
 
 export { Portfolio as Portfolio };

@@ -49,7 +49,7 @@ class LanguageUpdateInput {
   @Field(() => PortfolioWhereUniqueInput, {
     nullable: true,
   })
-  portfolios?: PortfolioWhereUniqueInput | null;
+  portfolios?: PortfolioWhereUniqueInput;
 }
 
 export { LanguageUpdateInput as LanguageUpdateInput };

@@ -8,5 +8,5 @@ export type PortfolioCreateInput = {
   info?: string | null;
   language?: LanguageCreateNestedManyWithoutPortfoliosInput;
   liveUrl?: string | null;
-  user?: UserWhereUniqueInput | null;
+  user: UserWhereUniqueInput;
 };
