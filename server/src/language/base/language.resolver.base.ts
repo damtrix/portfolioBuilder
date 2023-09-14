@@ -96,11 +96,9 @@ export class LanguageResolverBase {
       data: {
         ...args.data,
 
-        portfolios: args.data.portfolios
-          ? {
-              connect: args.data.portfolios,
-            }
-          : undefined,
+        portfolios: {
+          connect: args.data.portfolios,
+        },
       },
     });
   }
@@ -121,11 +119,9 @@ export class LanguageResolverBase {
         data: {
           ...args.data,
 
-          portfolios: args.data.portfolios
-            ? {
-                connect: args.data.portfolios,
-              }
-            : undefined,
+          portfolios: {
+            connect: args.data.portfolios,
+          },
         },
       });
     } catch (error) {

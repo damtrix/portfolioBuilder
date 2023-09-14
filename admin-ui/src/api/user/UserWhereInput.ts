@@ -1,15 +1,15 @@
 import { StringFilter } from "../../util/StringFilter";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
-import { HomeWhereUniqueInput } from "../home/HomeWhereUniqueInput";
+import { HomeListRelationFilter } from "../home/HomeListRelationFilter";
 import { PortfolioListRelationFilter } from "../portfolio/PortfolioListRelationFilter";
-import { TechnicalSkillWhereUniqueInput } from "../technicalSkill/TechnicalSkillWhereUniqueInput";
+import { TechnicalSkillListRelationFilter } from "../technicalSkill/TechnicalSkillListRelationFilter";
 
 export type UserWhereInput = {
   aboutMe?: StringFilter;
   email?: StringFilter;
   firstName?: StringNullableFilter;
   githubLink?: StringNullableFilter;
-  home?: HomeWhereUniqueInput;
+  home?: HomeListRelationFilter;
   id?: StringFilter;
   image?: StringFilter;
   lastName?: StringNullableFilter;
@@ -17,7 +17,7 @@ export type UserWhereInput = {
   message?: StringFilter;
   portfolios?: PortfolioListRelationFilter;
   speciality?: StringFilter;
-  technicalSkills?: TechnicalSkillWhereUniqueInput;
+  technicalSkills?: TechnicalSkillListRelationFilter;
   twitterLink?: StringNullableFilter;
   username?: StringFilter;
 };

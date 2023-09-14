@@ -27,9 +27,15 @@ import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
+import { HomeFindManyArgs } from "../../home/base/HomeFindManyArgs";
+import { Home } from "../../home/base/Home";
+import { HomeWhereUniqueInput } from "../../home/base/HomeWhereUniqueInput";
 import { PortfolioFindManyArgs } from "../../portfolio/base/PortfolioFindManyArgs";
 import { Portfolio } from "../../portfolio/base/Portfolio";
 import { PortfolioWhereUniqueInput } from "../../portfolio/base/PortfolioWhereUniqueInput";
+import { TechnicalSkillFindManyArgs } from "../../technicalSkill/base/TechnicalSkillFindManyArgs";
+import { TechnicalSkill } from "../../technicalSkill/base/TechnicalSkill";
+import { TechnicalSkillWhereUniqueInput } from "../../technicalSkill/base/TechnicalSkillWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -51,34 +57,13 @@ export class UserControllerBase {
   })
   async create(@common.Body() data: UserCreateInput): Promise<User> {
     return await this.service.create({
-      data: {
-        ...data,
-
-        home: data.home
-          ? {
-              connect: data.home,
-            }
-          : undefined,
-
-        technicalSkills: data.technicalSkills
-          ? {
-              connect: data.technicalSkills,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
         aboutMe: true,
         createdAt: true,
         email: true,
         firstName: true,
         githubLink: true,
-
-        home: {
-          select: {
-            id: true,
-          },
-        },
-
         id: true,
         image: true,
         lastName: true,
@@ -86,13 +71,6 @@ export class UserControllerBase {
         message: true,
         roles: true,
         speciality: true,
-
-        technicalSkills: {
-          select: {
-            id: true,
-          },
-        },
-
         twitterLink: true,
         updatedAt: true,
         username: true,
@@ -122,13 +100,6 @@ export class UserControllerBase {
         email: true,
         firstName: true,
         githubLink: true,
-
-        home: {
-          select: {
-            id: true,
-          },
-        },
-
         id: true,
         image: true,
         lastName: true,
@@ -136,13 +107,6 @@ export class UserControllerBase {
         message: true,
         roles: true,
         speciality: true,
-
-        technicalSkills: {
-          select: {
-            id: true,
-          },
-        },
-
         twitterLink: true,
         updatedAt: true,
         username: true,
@@ -173,13 +137,6 @@ export class UserControllerBase {
         email: true,
         firstName: true,
         githubLink: true,
-
-        home: {
-          select: {
-            id: true,
-          },
-        },
-
         id: true,
         image: true,
         lastName: true,
@@ -187,13 +144,6 @@ export class UserControllerBase {
         message: true,
         roles: true,
         speciality: true,
-
-        technicalSkills: {
-          select: {
-            id: true,
-          },
-        },
-
         twitterLink: true,
         updatedAt: true,
         username: true,
@@ -226,34 +176,13 @@ export class UserControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: {
-          ...data,
-
-          home: data.home
-            ? {
-                connect: data.home,
-              }
-            : undefined,
-
-          technicalSkills: data.technicalSkills
-            ? {
-                connect: data.technicalSkills,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
           aboutMe: true,
           createdAt: true,
           email: true,
           firstName: true,
           githubLink: true,
-
-          home: {
-            select: {
-              id: true,
-            },
-          },
-
           id: true,
           image: true,
           lastName: true,
@@ -261,13 +190,6 @@ export class UserControllerBase {
           message: true,
           roles: true,
           speciality: true,
-
-          technicalSkills: {
-            select: {
-              id: true,
-            },
-          },
-
           twitterLink: true,
           updatedAt: true,
           username: true,
@@ -306,13 +228,6 @@ export class UserControllerBase {
           email: true,
           firstName: true,
           githubLink: true,
-
-          home: {
-            select: {
-              id: true,
-            },
-          },
-
           id: true,
           image: true,
           lastName: true,
@@ -320,13 +235,6 @@ export class UserControllerBase {
           message: true,
           roles: true,
           speciality: true,
-
-          technicalSkills: {
-            select: {
-              id: true,
-            },
-          },
-
           twitterLink: true,
           updatedAt: true,
           username: true,
@@ -340,6 +248,109 @@ export class UserControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/home")
+  @ApiNestedQuery(HomeFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "Home",
+    action: "read",
+    possession: "any",
+  })
+  async findManyHome(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<Home[]> {
+    const query = plainToClass(HomeFindManyArgs, request.query);
+    const results = await this.service.findHome(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        id: true,
+        logo: true,
+        topBgImage: true,
+        updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/home")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectHome(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: HomeWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      home: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/home")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateHome(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: HomeWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      home: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/home")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectHome(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: HomeWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      home: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
@@ -438,6 +449,109 @@ export class UserControllerBase {
   ): Promise<void> {
     const data = {
       portfolios: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/technicalSkills")
+  @ApiNestedQuery(TechnicalSkillFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "TechnicalSkill",
+    action: "read",
+    possession: "any",
+  })
+  async findManyTechnicalSkills(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<TechnicalSkill[]> {
+    const query = plainToClass(TechnicalSkillFindManyArgs, request.query);
+    const results = await this.service.findTechnicalSkills(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        id: true,
+        name: true,
+        updatedAt: true,
+        url: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/technicalSkills")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectTechnicalSkills(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: TechnicalSkillWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      technicalSkills: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/technicalSkills")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateTechnicalSkills(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: TechnicalSkillWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      technicalSkills: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/technicalSkills")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectTechnicalSkills(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: TechnicalSkillWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      technicalSkills: {
         disconnect: body,
       },
     };

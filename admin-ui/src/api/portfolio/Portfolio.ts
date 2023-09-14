@@ -11,5 +11,5 @@ export type Portfolio = {
   language?: Array<Language>;
   liveUrl: string | null;
   updatedAt: Date;
-  user?: User | null;
+  user?: User;
 };

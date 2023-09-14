@@ -49,7 +49,7 @@ class HomeUpdateInput {
   @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  user?: UserWhereUniqueInput | null;
+  user?: UserWhereUniqueInput;
 }
 
 export { HomeUpdateInput as HomeUpdateInput };

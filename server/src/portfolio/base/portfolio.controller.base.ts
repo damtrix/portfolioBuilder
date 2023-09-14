@@ -54,11 +54,9 @@ export class PortfolioControllerBase {
       data: {
         ...data,
 
-        user: data.user
-          ? {
-              connect: data.user,
-            }
-          : undefined,
+        user: {
+          connect: data.user,
+        },
       },
       select: {
         category: true,
@@ -178,11 +176,9 @@ export class PortfolioControllerBase {
         data: {
           ...data,
 
-          user: data.user
-            ? {
-                connect: data.user,
-              }
-            : undefined,
+          user: {
+            connect: data.user,
+          },
         },
         select: {
           category: true,

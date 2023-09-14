@@ -37,16 +37,13 @@ class TechnicalSkillCreateInput {
   url!: string;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => UserWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => UserWhereUniqueInput)
-  @IsOptional()
-  @Field(() => UserWhereUniqueInput, {
-    nullable: true,
-  })
-  user?: UserWhereUniqueInput | null;
+  @Field(() => UserWhereUniqueInput)
+  user!: UserWhereUniqueInput;
 }
 
 export { TechnicalSkillCreateInput as TechnicalSkillCreateInput };

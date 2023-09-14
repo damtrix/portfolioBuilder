@@ -8,12 +8,11 @@ There are other ways to to customize your code, see this doc to learn more
 https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
-  */
-import { PrismaService } from '../../prisma/prisma.service';
-import { Prisma, User, Portfolio, Home, TechnicalSkill } from '@prisma/client';
 
-import { PasswordService } from '../../auth/password.service';
-import { transformStringFieldUpdateInput } from '../../prisma.util';
+import { PrismaService } from "../../prisma/prisma.service";
+import { Prisma, User, Home, Portfolio, TechnicalSkill } from "@prisma/client";
+import { PasswordService } from "../../auth/password.service";
+import { transformStringFieldUpdateInput } from "../../prisma.util";
 
 export class UserServiceBase {
   constructor(
@@ -73,6 +72,17 @@ export class UserServiceBase {
     return this.prisma.user.delete(args);
   }
 
+  async findHome(
+    parentId: string,
+    args: Prisma.HomeFindManyArgs
+  ): Promise<Home[]> {
+    return this.prisma.user
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .home(args);
+  }
+
   async findPortfolios(
     parentId: string,
     args: Prisma.PortfolioFindManyArgs
@@ -84,19 +94,14 @@ export class UserServiceBase {
       .portfolios(args);
   }
 
-  async getHome(parentId: string): Promise<Home | null> {
+  async findTechnicalSkills(
+    parentId: string,
+    args: Prisma.TechnicalSkillFindManyArgs
+  ): Promise<TechnicalSkill[]> {
     return this.prisma.user
-      .findUnique({
+      .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .home();
-  }
-
-  async getTechnicalSkills(parentId: string): Promise<TechnicalSkill | null> {
-    return this.prisma.user
-      .findUnique({
-        where: { id: parentId },
-      })
-      .technicalSkills();
+      .technicalSkills(args);
   }
 }

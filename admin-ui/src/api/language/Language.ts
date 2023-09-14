@@ -5,6 +5,6 @@ export type Language = {
   createdAt: Date;
   id: string;
   name: string;
-  portfolios?: Portfolio | null;
+  portfolios?: Portfolio;
   updatedAt: Date;
 };

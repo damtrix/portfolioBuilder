@@ -12,13 +12,13 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { HomeWhereUniqueInput } from "../../home/base/HomeWhereUniqueInput";
+import { HomeCreateNestedManyWithoutUsersInput } from "./HomeCreateNestedManyWithoutUsersInput";
 import { Type } from "class-transformer";
 import { PortfolioCreateNestedManyWithoutUsersInput } from "./PortfolioCreateNestedManyWithoutUsersInput";
 import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { TechnicalSkillWhereUniqueInput } from "../../technicalSkill/base/TechnicalSkillWhereUniqueInput";
+import { TechnicalSkillCreateNestedManyWithoutUsersInput } from "./TechnicalSkillCreateNestedManyWithoutUsersInput";
 
 @InputType()
 class UserCreateInput {
@@ -62,15 +62,15 @@ class UserCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => HomeWhereUniqueInput,
+    type: () => HomeCreateNestedManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => HomeWhereUniqueInput)
+  @Type(() => HomeCreateNestedManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => HomeWhereUniqueInput, {
+  @Field(() => HomeCreateNestedManyWithoutUsersInput, {
     nullable: true,
   })
-  home?: HomeWhereUniqueInput | null;
+  home?: HomeCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
     required: true,
@@ -147,15 +147,15 @@ class UserCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => TechnicalSkillWhereUniqueInput,
+    type: () => TechnicalSkillCreateNestedManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => TechnicalSkillWhereUniqueInput)
+  @Type(() => TechnicalSkillCreateNestedManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => TechnicalSkillWhereUniqueInput, {
+  @Field(() => TechnicalSkillCreateNestedManyWithoutUsersInput, {
     nullable: true,
   })
-  technicalSkills?: TechnicalSkillWhereUniqueInput | null;
+  technicalSkills?: TechnicalSkillCreateNestedManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,

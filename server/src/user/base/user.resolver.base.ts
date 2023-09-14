@@ -26,9 +26,11 @@ import { UserCountArgs } from "./UserCountArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { HomeFindManyArgs } from "../../home/base/HomeFindManyArgs";
+import { Home } from "../../home/base/Home";
 import { PortfolioFindManyArgs } from "../../portfolio/base/PortfolioFindManyArgs";
 import { Portfolio } from "../../portfolio/base/Portfolio";
-import { Home } from "../../home/base/Home";
+import { TechnicalSkillFindManyArgs } from "../../technicalSkill/base/TechnicalSkillFindManyArgs";
 import { TechnicalSkill } from "../../technicalSkill/base/TechnicalSkill";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -90,21 +92,7 @@ export class UserResolverBase {
   async createUser(@graphql.Args() args: CreateUserArgs): Promise<User> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        home: args.data.home
-          ? {
-              connect: args.data.home,
-            }
-          : undefined,
-
-        technicalSkills: args.data.technicalSkills
-          ? {
-              connect: args.data.technicalSkills,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -119,21 +107,7 @@ export class UserResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          home: args.data.home
-            ? {
-                connect: args.data.home,
-              }
-            : undefined,
-
-          technicalSkills: args.data.technicalSkills
-            ? {
-                connect: args.data.technicalSkills,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -165,6 +139,26 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Home], { name: "home" })
+  @nestAccessControl.UseRoles({
+    resource: "Home",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldHome(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: HomeFindManyArgs
+  ): Promise<Home[]> {
+    const results = await this.service.findHome(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => [Portfolio], { name: "portfolios" })
   @nestAccessControl.UseRoles({
     resource: "Portfolio",
@@ -185,42 +179,22 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Home, {
-    nullable: true,
-    name: "home",
-  })
-  @nestAccessControl.UseRoles({
-    resource: "Home",
-    action: "read",
-    possession: "any",
-  })
-  async resolveFieldHome(@graphql.Parent() parent: User): Promise<Home | null> {
-    const result = await this.service.getHome(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => TechnicalSkill, {
-    nullable: true,
-    name: "technicalSkills",
-  })
+  @graphql.ResolveField(() => [TechnicalSkill], { name: "technicalSkills" })
   @nestAccessControl.UseRoles({
     resource: "TechnicalSkill",
     action: "read",
     possession: "any",
   })
   async resolveFieldTechnicalSkills(
-    @graphql.Parent() parent: User
-  ): Promise<TechnicalSkill | null> {
-    const result = await this.service.getTechnicalSkills(parent.id);
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: TechnicalSkillFindManyArgs
+  ): Promise<TechnicalSkill[]> {
+    const results = await this.service.findTechnicalSkills(parent.id, args);
 
-    if (!result) {
-      return null;
+    if (!results) {
+      return [];
     }
-    return result;
+
+    return results;
   }
 }

@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsDate, ValidateNested, IsOptional } from "class-validator";
+import { IsString, IsDate, ValidateNested } from "class-validator";
 import { Type } from "class-transformer";
 import { Portfolio } from "../../portfolio/base/Portfolio";
 
@@ -50,13 +50,12 @@ class Language {
   name!: string;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => Portfolio,
   })
   @ValidateNested()
   @Type(() => Portfolio)
-  @IsOptional()
-  portfolios?: Portfolio | null;
+  portfolios?: Portfolio;
 
   @ApiProperty({
     required: true,

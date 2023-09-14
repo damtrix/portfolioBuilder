@@ -6,14 +6,12 @@ import {
   ShowProps,
   TextField,
   DateField,
-  ReferenceField,
   ReferenceManyField,
   Datagrid,
+  ReferenceField,
 } from "react-admin";
 
 import { USER_TITLE_FIELD } from "./UserTitle";
-import { HOME_TITLE_FIELD } from "../home/HomeTitle";
-import { TECHNICALSKILL_TITLE_FIELD } from "../technicalSkill/TechnicalSkillTitle";
 
 export const UserShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -24,9 +22,6 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Email" source="email" />
         <TextField label="First Name" source="firstName" />
         <TextField label="Github Link" source="githubLink" />
-        <ReferenceField label="Home" source="home.id" reference="Home">
-          <TextField source={HOME_TITLE_FIELD} />
-        </ReferenceField>
         <TextField label="ID" source="id" />
         <TextField label="Image" source="image" />
         <TextField label="Last Name" source="lastName" />
@@ -34,16 +29,21 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Message" source="message" />
         <TextField label="Roles" source="roles" />
         <TextField label="Speciality" source="speciality" />
-        <ReferenceField
-          label="Technical Skills"
-          source="technicalskill.id"
-          reference="TechnicalSkill"
-        >
-          <TextField source={TECHNICALSKILL_TITLE_FIELD} />
-        </ReferenceField>
         <TextField label="Twitter Link" source="twitterLink" />
         <DateField source="updatedAt" label="Updated At" />
         <TextField label="Username" source="username" />
+        <ReferenceManyField reference="Home" target="userId" label="Homes">
+          <Datagrid rowClick="show">
+            <DateField source="createdAt" label="Created At" />
+            <TextField label="Id" source="id" />
+            <TextField label="Logo" source="logo" />
+            <TextField label="Top Bg Image" source="topBgImage" />
+            <DateField source="updatedAt" label="Updated At" />
+            <ReferenceField label="User" source="user.id" reference="User">
+              <TextField source={USER_TITLE_FIELD} />
+            </ReferenceField>
+          </Datagrid>
+        </ReferenceManyField>
         <ReferenceManyField
           reference="Portfolio"
           target="userId"
@@ -58,6 +58,22 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
             <TextField label="Info" source="info" />
             <TextField label="Live Url" source="liveUrl" />
             <DateField source="updatedAt" label="Updated At" />
+            <ReferenceField label="User" source="user.id" reference="User">
+              <TextField source={USER_TITLE_FIELD} />
+            </ReferenceField>
+          </Datagrid>
+        </ReferenceManyField>
+        <ReferenceManyField
+          reference="TechnicalSkill"
+          target="userId"
+          label="TechnicalSkills"
+        >
+          <Datagrid rowClick="show">
+            <DateField source="createdAt" label="Created At" />
+            <TextField label="Id" source="id" />
+            <TextField label="Name" source="name" />
+            <DateField source="updatedAt" label="Updated At" />
+            <TextField label="Url" source="url" />
             <ReferenceField label="User" source="user.id" reference="User">
               <TextField source={USER_TITLE_FIELD} />
             </ReferenceField>

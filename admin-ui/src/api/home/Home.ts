@@ -6,5 +6,5 @@ export type Home = {
   logo: string | null;
   topBgImage: string | null;
   updatedAt: Date;
-  user?: User | null;
+  user?: User;
 };

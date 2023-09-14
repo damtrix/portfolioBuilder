@@ -83,17 +83,6 @@ class UserOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  homeId?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
   id?: SortOrder;
 
   @ApiProperty({
@@ -172,17 +161,6 @@ class UserOrderByInput {
     nullable: true,
   })
   speciality?: SortOrder;
-
-  @ApiProperty({
-    required: false,
-    enum: ["asc", "desc"],
-  })
-  @IsOptional()
-  @IsEnum(SortOrder)
-  @Field(() => SortOrder, {
-    nullable: true,
-  })
-  technicalSkillsId?: SortOrder;
 
   @ApiProperty({
     required: false,

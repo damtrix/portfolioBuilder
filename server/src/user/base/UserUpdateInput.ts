@@ -12,13 +12,13 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { HomeWhereUniqueInput } from "../../home/base/HomeWhereUniqueInput";
+import { HomeUpdateManyWithoutUsersInput } from "./HomeUpdateManyWithoutUsersInput";
 import { Type } from "class-transformer";
 import { PortfolioUpdateManyWithoutUsersInput } from "./PortfolioUpdateManyWithoutUsersInput";
 import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { InputJsonValue } from "../../types";
-import { TechnicalSkillWhereUniqueInput } from "../../technicalSkill/base/TechnicalSkillWhereUniqueInput";
+import { TechnicalSkillUpdateManyWithoutUsersInput } from "./TechnicalSkillUpdateManyWithoutUsersInput";
 
 @InputType()
 class UserUpdateInput {
@@ -68,15 +68,15 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => HomeWhereUniqueInput,
+    type: () => HomeUpdateManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => HomeWhereUniqueInput)
+  @Type(() => HomeUpdateManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => HomeWhereUniqueInput, {
+  @Field(() => HomeUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  home?: HomeWhereUniqueInput | null;
+  home?: HomeUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,
@@ -168,15 +168,15 @@ class UserUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => TechnicalSkillWhereUniqueInput,
+    type: () => TechnicalSkillUpdateManyWithoutUsersInput,
   })
   @ValidateNested()
-  @Type(() => TechnicalSkillWhereUniqueInput)
+  @Type(() => TechnicalSkillUpdateManyWithoutUsersInput)
   @IsOptional()
-  @Field(() => TechnicalSkillWhereUniqueInput, {
+  @Field(() => TechnicalSkillUpdateManyWithoutUsersInput, {
     nullable: true,
   })
-  technicalSkills?: TechnicalSkillWhereUniqueInput | null;
+  technicalSkills?: TechnicalSkillUpdateManyWithoutUsersInput;
 
   @ApiProperty({
     required: false,

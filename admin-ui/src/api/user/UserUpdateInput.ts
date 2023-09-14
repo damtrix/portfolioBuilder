@@ -1,14 +1,14 @@
-import { HomeWhereUniqueInput } from "../home/HomeWhereUniqueInput";
+import { HomeUpdateManyWithoutUsersInput } from "./HomeUpdateManyWithoutUsersInput";
 import { PortfolioUpdateManyWithoutUsersInput } from "./PortfolioUpdateManyWithoutUsersInput";
 import { InputJsonValue } from "../../types";
-import { TechnicalSkillWhereUniqueInput } from "../technicalSkill/TechnicalSkillWhereUniqueInput";
+import { TechnicalSkillUpdateManyWithoutUsersInput } from "./TechnicalSkillUpdateManyWithoutUsersInput";
 
 export type UserUpdateInput = {
   aboutMe?: string;
   email?: string;
   firstName?: string | null;
   githubLink?: string | null;
-  home?: HomeWhereUniqueInput | null;
+  home?: HomeUpdateManyWithoutUsersInput;
   image?: string;
   lastName?: string | null;
   linkedinLink?: string | null;
@@ -17,7 +17,7 @@ export type UserUpdateInput = {
   portfolios?: PortfolioUpdateManyWithoutUsersInput;
   roles?: InputJsonValue;
   speciality?: string;
-  technicalSkills?: TechnicalSkillWhereUniqueInput | null;
+  technicalSkills?: TechnicalSkillUpdateManyWithoutUsersInput;
   twitterLink?: string | null;
   username?: string;
 };

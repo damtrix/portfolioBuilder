@@ -90,11 +90,9 @@ export class HomeResolverBase {
       data: {
         ...args.data,
 
-        user: args.data.user
-          ? {
-              connect: args.data.user,
-            }
-          : undefined,
+        user: {
+          connect: args.data.user,
+        },
       },
     });
   }
@@ -113,11 +111,9 @@ export class HomeResolverBase {
         data: {
           ...args.data,
 
-          user: args.data.user
-            ? {
-                connect: args.data.user,
-              }
-            : undefined,
+          user: {
+            connect: args.data.user,
+          },
         },
       });
     } catch (error) {

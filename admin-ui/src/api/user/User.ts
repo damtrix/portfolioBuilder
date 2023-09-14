@@ -9,7 +9,7 @@ export type User = {
   email: string;
   firstName: string | null;
   githubLink: string | null;
-  home?: Home | null;
+  home?: Array<Home>;
   id: string;
   image: string;
   lastName: string | null;
@@ -18,7 +18,7 @@ export type User = {
   portfolios?: Array<Portfolio>;
   roles: JsonValue;
   speciality: string;
-  technicalSkills?: TechnicalSkill | null;
+  technicalSkills?: Array<TechnicalSkill>;
   twitterLink: string | null;
   updatedAt: Date;
   username: string;
