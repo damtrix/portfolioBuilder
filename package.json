@@ -7,7 +7,7 @@
     "start": "npm-run-all -p start:frontend start:backend",
     "start:frontend": "cross-env PORT=5000 npm --prefix public run dev",
     "start:admin": "npm --prefix admin-ui start",
-    "start:backend": "npm --prefix server start",
+    "start:backend": "npm run --prefix server start:watch",
     "postinstall": "npm i --prefix public && npm i --prefix admin-ui && npm i --prefix server"
   },
   "devDependencies": {
