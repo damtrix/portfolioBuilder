@@ -1,0 +1,443 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input Credentials {
+  password: String!
+  username: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: DateTime
+  notIn: [DateTime!]
+}
+
+type Home {
+  createdAt: DateTime!
+  id: String!
+  logo: String
+  topBgImage: String
+  updatedAt: DateTime!
+  user: User
+}
+
+input HomeCreateInput {
+  logo: String
+  topBgImage: String
+  user: UserWhereUniqueInput
+}
+
+input HomeOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  logo: SortOrder
+  topBgImage: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input HomeUpdateInput {
+  logo: String
+  topBgImage: String
+  user: UserWhereUniqueInput
+}
+
+input HomeWhereInput {
+  createdAt: DateTimeFilter
+  id: StringFilter
+  logo: StringNullableFilter
+  topBgImage: StringNullableFilter
+  updatedAt: DateTimeFilter
+  user: UserWhereUniqueInput
+}
+
+input HomeWhereUniqueInput {
+  id: String!
+}
+
+"""
+The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+"""
+scalar JSON @specifiedBy(url: "http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf")
+
+type Language {
+  acronym: String!
+  createdAt: DateTime!
+  id: String!
+  name: String!
+  portfolios: Portfolio
+  updatedAt: DateTime!
+}
+
+input LanguageCreateInput {
+  acronym: String!
+  name: String!
+  portfolios: PortfolioWhereUniqueInput
+}
+
+input LanguageCreateNestedManyWithoutPortfoliosInput {
+  connect: [LanguageWhereUniqueInput!]
+}
+
+input LanguageListRelationFilter {
+  every: LanguageWhereInput
+  none: LanguageWhereInput
+  some: LanguageWhereInput
+}
+
+input LanguageOrderByInput {
+  acronym: SortOrder
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  portfoliosId: SortOrder
+  updatedAt: SortOrder
+}
+
+input LanguageUpdateInput {
+  acronym: String
+  name: String
+  portfolios: PortfolioWhereUniqueInput
+}
+
+input LanguageUpdateManyWithoutPortfoliosInput {
+  connect: [LanguageWhereUniqueInput!]
+  disconnect: [LanguageWhereUniqueInput!]
+  set: [LanguageWhereUniqueInput!]
+}
+
+input LanguageWhereInput {
+  acronym: StringFilter
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringFilter
+  portfolios: PortfolioWhereUniqueInput
+  updatedAt: DateTimeFilter
+}
+
+input LanguageWhereUniqueInput {
+  id: String!
+}
+
+type MetaQueryPayload {
+  count: Float!
+}
+
+type Mutation {
+  createHome(data: HomeCreateInput!): Home!
+  createLanguage(data: LanguageCreateInput!): Language!
+  createPortfolio(data: PortfolioCreateInput!): Portfolio!
+  createTechnicalSkill(data: TechnicalSkillCreateInput!): TechnicalSkill!
+  createUser(data: UserCreateInput!): User!
+  deleteHome(where: HomeWhereUniqueInput!): Home!
+  deleteLanguage(where: LanguageWhereUniqueInput!): Language!
+  deletePortfolio(where: PortfolioWhereUniqueInput!): Portfolio!
+  deleteTechnicalSkill(where: TechnicalSkillWhereUniqueInput!): TechnicalSkill!
+  deleteUser(where: UserWhereUniqueInput!): User!
+  login(credentials: Credentials!): UserInfo!
+  updateHome(data: HomeUpdateInput!, where: HomeWhereUniqueInput!): Home!
+  updateLanguage(data: LanguageUpdateInput!, where: LanguageWhereUniqueInput!): Language!
+  updatePortfolio(data: PortfolioUpdateInput!, where: PortfolioWhereUniqueInput!): Portfolio!
+  updateTechnicalSkill(data: TechnicalSkillUpdateInput!, where: TechnicalSkillWhereUniqueInput!): TechnicalSkill!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
+}
+
+type Portfolio {
+  category: String!
+  createdAt: DateTime!
+  githubUrl: String!
+  id: String!
+  image: String!
+  info: String
+  language(orderBy: [LanguageOrderByInput!], skip: Float, take: Float, where: LanguageWhereInput): [Language!]!
+  liveUrl: String
+  updatedAt: DateTime!
+  user: User
+}
+
+input PortfolioCreateInput {
+  category: String!
+  githubUrl: String!
+  image: String!
+  info: String
+  language: LanguageCreateNestedManyWithoutPortfoliosInput
+  liveUrl: String
+  user: UserWhereUniqueInput
+}
+
+input PortfolioCreateNestedManyWithoutUsersInput {
+  connect: [PortfolioWhereUniqueInput!]
+}
+
+input PortfolioListRelationFilter {
+  every: PortfolioWhereInput
+  none: PortfolioWhereInput
+  some: PortfolioWhereInput
+}
+
+input PortfolioOrderByInput {
+  category: SortOrder
+  createdAt: SortOrder
+  githubUrl: SortOrder
+  id: SortOrder
+  image: SortOrder
+  info: SortOrder
+  liveUrl: SortOrder
+  updatedAt: SortOrder
+  userId: SortOrder
+}
+
+input PortfolioUpdateInput {
+  category: String
+  githubUrl: String
+  image: String
+  info: String
+  language: LanguageUpdateManyWithoutPortfoliosInput
+  liveUrl: String
+  user: UserWhereUniqueInput
+}
+
+input PortfolioUpdateManyWithoutUsersInput {
+  connect: [PortfolioWhereUniqueInput!]
+  disconnect: [PortfolioWhereUniqueInput!]
+  set: [PortfolioWhereUniqueInput!]
+}
+
+input PortfolioWhereInput {
+  category: StringFilter
+  createdAt: DateTimeFilter
+  githubUrl: StringFilter
+  id: StringFilter
+  image: StringFilter
+  info: StringNullableFilter
+  language: LanguageListRelationFilter
+  liveUrl: StringNullableFilter
+  updatedAt: DateTimeFilter
+  user: UserWhereUniqueInput
+}
+
+input PortfolioWhereUniqueInput {
+  id: String!
+}
+
+type Query {
+  _homesMeta(where: HomeWhereInput): MetaQueryPayload!
+  _languagesMeta(where: LanguageWhereInput): MetaQueryPayload!
+  _portfoliosMeta(where: PortfolioWhereInput): MetaQueryPayload!
+  _technicalSkillsMeta(where: TechnicalSkillWhereInput): MetaQueryPayload!
+  _usersMeta(where: UserWhereInput): MetaQueryPayload!
+  home(where: HomeWhereUniqueInput!): Home
+  homes(orderBy: [HomeOrderByInput!], skip: Float, take: Float, where: HomeWhereInput): [Home!]!
+  language(where: LanguageWhereUniqueInput!): Language
+  languages(orderBy: [LanguageOrderByInput!], skip: Float, take: Float, where: LanguageWhereInput): [Language!]!
+  portfolio(where: PortfolioWhereUniqueInput!): Portfolio
+  portfolios(orderBy: [PortfolioOrderByInput!], skip: Float, take: Float, where: PortfolioWhereInput): [Portfolio!]!
+  technicalSkill(where: TechnicalSkillWhereUniqueInput!): TechnicalSkill
+  technicalSkills(orderBy: [TechnicalSkillOrderByInput!], skip: Float, take: Float, where: TechnicalSkillWhereInput): [TechnicalSkill!]!
+  user(where: UserWhereUniqueInput!): User
+  userInfo: UserInfo!
+  users(orderBy: [UserOrderByInput!], skip: Float, take: Float, where: UserWhereInput): [User!]!
+}
+
+enum QueryMode {
+  Default
+  Insensitive
+}
+
+enum SortOrder {
+  Asc
+  Desc
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  mode: QueryMode
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
+
+type TechnicalSkill {
+  createdAt: DateTime!
+  id: String!
+  name: String
+  updatedAt: DateTime!
+  url: String!
+  user: User
+}
+
+input TechnicalSkillCreateInput {
+  name: String
+  url: String!
+  user: UserWhereUniqueInput
+}
+
+input TechnicalSkillOrderByInput {
+  createdAt: SortOrder
+  id: SortOrder
+  name: SortOrder
+  updatedAt: SortOrder
+  url: SortOrder
+  userId: SortOrder
+}
+
+input TechnicalSkillUpdateInput {
+  name: String
+  url: String
+  user: UserWhereUniqueInput
+}
+
+input TechnicalSkillWhereInput {
+  createdAt: DateTimeFilter
+  id: StringFilter
+  name: StringNullableFilter
+  updatedAt: DateTimeFilter
+  url: StringFilter
+  user: UserWhereUniqueInput
+}
+
+input TechnicalSkillWhereUniqueInput {
+  id: String!
+}
+
+type User {
+  aboutMe: String!
+  createdAt: DateTime!
+  email: String!
+  firstName: String
+  githubLink: String
+  home: Home
+  id: String!
+  image: String!
+  lastName: String
+  linkedinLink: String
+  message: String!
+  portfolios(orderBy: [PortfolioOrderByInput!], skip: Float, take: Float, where: PortfolioWhereInput): [Portfolio!]!
+  roles: JSON!
+  speciality: String!
+  technicalSkills: TechnicalSkill
+  twitterLink: String
+  updatedAt: DateTime!
+  username: String!
+}
+
+input UserCreateInput {
+  aboutMe: String!
+  email: String!
+  firstName: String
+  githubLink: String
+  home: HomeWhereUniqueInput
+  image: String!
+  lastName: String
+  linkedinLink: String
+  message: String!
+  password: String!
+  portfolios: PortfolioCreateNestedManyWithoutUsersInput
+  roles: JSON!
+  speciality: String!
+  technicalSkills: TechnicalSkillWhereUniqueInput
+  twitterLink: String
+  username: String!
+}
+
+type UserInfo {
+  accessToken: String
+  id: String!
+  roles: [String!]!
+  username: String!
+}
+
+input UserOrderByInput {
+  aboutMe: SortOrder
+  createdAt: SortOrder
+  email: SortOrder
+  firstName: SortOrder
+  githubLink: SortOrder
+  homeId: SortOrder
+  id: SortOrder
+  image: SortOrder
+  lastName: SortOrder
+  linkedinLink: SortOrder
+  message: SortOrder
+  password: SortOrder
+  roles: SortOrder
+  speciality: SortOrder
+  technicalSkillsId: SortOrder
+  twitterLink: SortOrder
+  updatedAt: SortOrder
+  username: SortOrder
+}
+
+input UserUpdateInput {
+  aboutMe: String
+  email: String
+  firstName: String
+  githubLink: String
+  home: HomeWhereUniqueInput
+  image: String
+  lastName: String
+  linkedinLink: String
+  message: String
+  password: String
+  portfolios: PortfolioUpdateManyWithoutUsersInput
+  roles: JSON
+  speciality: String
+  technicalSkills: TechnicalSkillWhereUniqueInput
+  twitterLink: String
+  username: String
+}
+
+input UserWhereInput {
+  aboutMe: StringFilter
+  email: StringFilter
+  firstName: StringNullableFilter
+  githubLink: StringNullableFilter
+  home: HomeWhereUniqueInput
+  id: StringFilter
+  image: StringFilter
+  lastName: StringNullableFilter
+  linkedinLink: StringNullableFilter
+  message: StringFilter
+  portfolios: PortfolioListRelationFilter
+  speciality: StringFilter
+  technicalSkills: TechnicalSkillWhereUniqueInput
+  twitterLink: StringNullableFilter
+  username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  id: String!
+}
