@@ -8,7 +8,7 @@ There are other ways to to customize your code, see this doc to learn more
 https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
-  */
+
 import { PrismaService } from "../../prisma/prisma.service";
 import { Prisma, User, Home, Portfolio, TechnicalSkill } from "@prisma/client";
 import { PasswordService } from "../../auth/password.service";
