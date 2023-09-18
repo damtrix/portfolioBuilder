@@ -12,25 +12,6 @@ import { addUser, userSelector } from './store/user/userSlice';
 import { checkUser } from './lib/auth';
 
 function App() {
- const [user, setUser] = useState<User>();
-  const [render, setRender] = useState(false);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    const dat = async () => {
-      await checkUser().then((result) => {
-        if (result) {
-          setUser(result.data[0]);
-          if (!render) {
-            dispatch(addUser(result.data[0]));
-            setRender(true);
-          }
-        }
-      });
-    };
-    dat();
-  }, []);
-
   return (
     <main>
       <div className=' max-w-[80%] mx-auto my-0 mt-12'>
