@@ -253,13 +253,6 @@ export class PortfolioControllerBase {
         createdAt: true,
         id: true,
         name: true,
-
-        portfolios: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
       },
     });

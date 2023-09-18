@@ -12,10 +12,9 @@ import { addUser, userSelector } from './store/user/userSlice';
 import { checkUser } from './lib/auth';
 
 function App() {
+ const [user, setUser] = useState<User>();
   const [render, setRender] = useState(false);
-  const [user, setUser] = useState(null);
   const dispatch = useAppDispatch();
-  const me = useAppSelector(userSelector);
 
   useEffect(() => {
     const dat = async () => {
@@ -31,8 +30,6 @@ function App() {
     };
     dat();
   }, []);
-  console.log(me.length);
-  console.log(me);
 
   return (
     <main>

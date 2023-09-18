@@ -1,14 +1,6 @@
 import * as React from "react";
-import {
-  List,
-  Datagrid,
-  ListProps,
-  TextField,
-  DateField,
-  ReferenceField,
-} from "react-admin";
+import { List, Datagrid, ListProps, TextField, DateField } from "react-admin";
 import Pagination from "../Components/Pagination";
-import { PORTFOLIO_TITLE_FIELD } from "../portfolio/PortfolioTitle";
 
 export const LanguageList = (props: ListProps): React.ReactElement => {
   return (
@@ -24,13 +16,6 @@ export const LanguageList = (props: ListProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <TextField label="Id" source="id" />
         <TextField label="Name" source="name" />
-        <ReferenceField
-          label="Portfolios"
-          source="portfolio.id"
-          reference="Portfolio"
-        >
-          <TextField source={PORTFOLIO_TITLE_FIELD} />
-        </ReferenceField>
         <DateField source="updatedAt" label="Updated At" />
       </Datagrid>
     </List>

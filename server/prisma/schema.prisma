@@ -50,13 +50,12 @@ model Home {
 }
 
 model Language {
-  acronym      String
-  createdAt    DateTime  @default(now())
-  id           String    @id @default(cuid())
-  name         String
-  portfolios   Portfolio @relation(fields: [portfoliosId], references: [id])
-  portfoliosId String
-  updatedAt    DateTime  @updatedAt
+  acronym    String
+  createdAt  DateTime    @default(now())
+  id         String      @id @default(cuid())
+  name       String
+  portfolios Portfolio[]
+  updatedAt  DateTime    @updatedAt
 }
 
 model Portfolio {

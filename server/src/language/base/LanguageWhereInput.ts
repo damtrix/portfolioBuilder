@@ -15,7 +15,7 @@ import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { DateTimeFilter } from "../../util/DateTimeFilter";
-import { PortfolioWhereUniqueInput } from "../../portfolio/base/PortfolioWhereUniqueInput";
+import { PortfolioListRelationFilter } from "../../portfolio/base/PortfolioListRelationFilter";
 
 @InputType()
 class LanguageWhereInput {
@@ -65,15 +65,15 @@ class LanguageWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => PortfolioWhereUniqueInput,
+    type: () => PortfolioListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => PortfolioWhereUniqueInput)
+  @Type(() => PortfolioListRelationFilter)
   @IsOptional()
-  @Field(() => PortfolioWhereUniqueInput, {
+  @Field(() => PortfolioListRelationFilter, {
     nullable: true,
   })
-  portfolios?: PortfolioWhereUniqueInput;
+  portfolios?: PortfolioListRelationFilter;
 
   @ApiProperty({
     required: false,
