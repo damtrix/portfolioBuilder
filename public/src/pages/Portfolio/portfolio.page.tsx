@@ -8,8 +8,8 @@ export const Portfolio = () => {
   const { projects, dropDownCategories } = useGlobalContext();
   const [categories, setcategories] = React.useState<project[]>(projects);
 
-  console.log(dropDownCategories);
-  console.log(categories);
+  // console.log(dropDownCategories);
+  // console.log(categories);
 
   const filterItem = (category: string) => {
     if (category === 'All') {

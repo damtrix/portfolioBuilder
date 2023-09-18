@@ -24,10 +24,14 @@ export type projectContextType = {
   dropDownCategories: string[];
 };
 
+interface IProps {
+  children: React.ReactNode;
+}
+
 export const AppContext = React.createContext<projectContextType | null>(null);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const AppProvider: React.FC<React.ReactNode> = ({ children }: any) => {
+export const AppProvider = ({ children }: IProps) => {
   const [navOpen, setNavOpen] = useState(false);
 
   //category to be shown in drop down

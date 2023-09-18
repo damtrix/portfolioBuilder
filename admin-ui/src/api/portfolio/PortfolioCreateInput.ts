@@ -1,5 +1,5 @@
-import { LanguageCreateNestedManyWithoutPortfoliosInput } from "./LanguageCreateNestedManyWithoutPortfoliosInput";
-import { UserWhereUniqueInput } from "../user/UserWhereUniqueInput";
+import { LanguageCreateNestedManyWithoutPortfoliosInput } from './LanguageCreateNestedManyWithoutPortfoliosInput';
+import { UserWhereUniqueInput } from '../user/UserWhereUniqueInput';
 
 export type PortfolioCreateInput = {
   category: string;
