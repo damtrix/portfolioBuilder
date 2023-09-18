@@ -9,8 +9,12 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Portfolio, Language, User } from "@prisma/client";
+import { PrismaService } from '../../prisma/prisma.service';
+import { Prisma, Portfolio, Language, User } from '@prisma/client';
+import { PortfolioCreateInput } from './PortfolioCreateInput';
+import { Portfolio as PortfolioNow } from './Portfolio';
+import { UserWhereUniqueInput } from 'src/user/base/UserWhereUniqueInput';
+import { UserInfo } from 'src/auth/UserInfo';
 
 export class PortfolioServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -64,5 +68,37 @@ export class PortfolioServiceBase {
         where: { id: parentId },
       })
       .user();
+  }
+
+  async createPorfolio(data: PortfolioCreateInput, userId: string) {
+    const portfolio = this.prisma.portfolio.create({
+      data: {
+        ...data,
+        user: {
+          connect: {
+            id: userId,
+          },
+        },
+      },
+      select: {
+        category: true,
+        createdAt: true,
+        githubUrl: true,
+        id: true,
+        image: true,
+        info: true,
+        liveUrl: true,
+        updatedAt: true,
+        userId: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+
+    return portfolio;
   }
 }
