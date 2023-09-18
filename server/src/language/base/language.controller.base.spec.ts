@@ -22,14 +22,12 @@ const CREATE_INPUT = {
   acronym: "exampleAcronym",
   createdAt: new Date(),
   id: "exampleId",
-  name: "exampleName",
   updatedAt: new Date(),
 };
 const CREATE_RESULT = {
   acronym: "exampleAcronym",
   createdAt: new Date(),
   id: "exampleId",
-  name: "exampleName",
   updatedAt: new Date(),
 };
 const FIND_MANY_RESULT = [
@@ -37,7 +35,6 @@ const FIND_MANY_RESULT = [
     acronym: "exampleAcronym",
     createdAt: new Date(),
     id: "exampleId",
-    name: "exampleName",
     updatedAt: new Date(),
   },
 ];
@@ -45,7 +42,6 @@ const FIND_ONE_RESULT = {
   acronym: "exampleAcronym",
   createdAt: new Date(),
   id: "exampleId",
-  name: "exampleName",
   updatedAt: new Date(),
 };
 

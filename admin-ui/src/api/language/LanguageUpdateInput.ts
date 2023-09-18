@@ -2,6 +2,5 @@ import { PortfolioUpdateManyWithoutLanguagesInput } from "./PortfolioUpdateManyW
 
 export type LanguageUpdateInput = {
   acronym?: string;
-  name?: string;
   portfolios?: PortfolioUpdateManyWithoutLanguagesInput;
 };

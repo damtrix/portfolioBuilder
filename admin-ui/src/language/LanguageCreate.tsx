@@ -16,7 +16,6 @@ export const LanguageCreate = (props: CreateProps): React.ReactElement => {
     <Create {...props}>
       <SimpleForm>
         <TextInput label="Acronym" source="acronym" />
-        <TextInput label="Name" source="name" />
         <ReferenceArrayInput
           source="portfolios"
           reference="Portfolio"

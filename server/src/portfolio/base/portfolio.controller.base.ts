@@ -51,11 +51,13 @@ export class PortfolioControllerBase {
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
-  createPortofio(
+
+ createPortofio(
     @common.Body() body: PortfolioCreateInput,
     @User() user: UserInfo
   ) {
     return this.service.createPorfolio(body, user.id);
+
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
@@ -82,6 +84,7 @@ export class PortfolioControllerBase {
         image: true,
         info: true,
         liveUrl: true,
+        title: true,
         updatedAt: true,
         language: true,
 
@@ -119,6 +122,7 @@ export class PortfolioControllerBase {
         image: true,
         info: true,
         liveUrl: true,
+        title: true,
         updatedAt: true,
 
         user: {
@@ -170,6 +174,7 @@ export class PortfolioControllerBase {
           image: true,
           info: true,
           liveUrl: true,
+          title: true,
           updatedAt: true,
 
           user: {
@@ -214,6 +219,7 @@ export class PortfolioControllerBase {
           image: true,
           info: true,
           liveUrl: true,
+          title: true,
           updatedAt: true,
 
           user: {
@@ -252,7 +258,6 @@ export class PortfolioControllerBase {
         acronym: true,
         createdAt: true,
         id: true,
-        name: true,
         updatedAt: true,
       },
     });

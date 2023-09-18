@@ -112,6 +112,17 @@ class PortfolioWhereInput {
 
   @ApiProperty({
     required: false,
+    type: StringFilter,
+  })
+  @Type(() => StringFilter)
+  @IsOptional()
+  @Field(() => StringFilter, {
+    nullable: true,
+  })
+  title?: StringFilter;
+
+  @ApiProperty({
+    required: false,
     type: DateTimeFilter,
   })
   @Type(() => DateTimeFilter)

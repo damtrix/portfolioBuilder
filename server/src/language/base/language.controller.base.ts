@@ -56,7 +56,6 @@ export class LanguageControllerBase {
         acronym: true,
         createdAt: true,
         id: true,
-        name: true,
         updatedAt: true,
       },
     });
@@ -82,7 +81,6 @@ export class LanguageControllerBase {
         acronym: true,
         createdAt: true,
         id: true,
-        name: true,
         updatedAt: true,
       },
     });
@@ -109,7 +107,6 @@ export class LanguageControllerBase {
         acronym: true,
         createdAt: true,
         id: true,
-        name: true,
         updatedAt: true,
       },
     });
@@ -145,7 +142,6 @@ export class LanguageControllerBase {
           acronym: true,
           createdAt: true,
           id: true,
-          name: true,
           updatedAt: true,
         },
       });
@@ -180,7 +176,6 @@ export class LanguageControllerBase {
           acronym: true,
           createdAt: true,
           id: true,
-          name: true,
           updatedAt: true,
         },
       });
@@ -217,6 +212,7 @@ export class LanguageControllerBase {
         image: true,
         info: true,
         liveUrl: true,
+        title: true,
         updatedAt: true,
 
         user: {

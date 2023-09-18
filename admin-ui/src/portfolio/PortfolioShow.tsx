@@ -20,6 +20,7 @@ export const PortfolioShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Image" source="image" />
         <TextField label="Info" source="info" />
         <TextField label="Live Url" source="liveUrl" />
+        <TextField label="Title" source="title" />
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceField label="User" source="user.id" reference="User">
           <TextField source={USER_TITLE_FIELD} />

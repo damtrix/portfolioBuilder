@@ -31,6 +31,7 @@ export const PortfolioEdit = (props: EditProps): React.ReactElement => {
           <SelectArrayInput optionText={LanguageTitle} />
         </ReferenceArrayInput>
         <TextInput label="Live Url" source="liveUrl" />
+        <TextInput label="Title" source="title" />
         <ReferenceInput source="user.id" reference="User" label="User">
           <SelectInput optionText={UserTitle} />
         </ReferenceInput>

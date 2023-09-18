@@ -6,7 +6,6 @@ export type LanguageWhereInput = {
   acronym?: StringFilter;
   createdAt?: DateTimeFilter;
   id?: StringFilter;
-  name?: StringFilter;
   portfolios?: PortfolioListRelationFilter;
   updatedAt?: DateTimeFilter;
 };

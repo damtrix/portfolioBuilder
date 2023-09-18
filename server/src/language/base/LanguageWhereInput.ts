@@ -54,17 +54,6 @@ class LanguageWhereInput {
 
   @ApiProperty({
     required: false,
-    type: StringFilter,
-  })
-  @Type(() => StringFilter)
-  @IsOptional()
-  @Field(() => StringFilter, {
-    nullable: true,
-  })
-  name?: StringFilter;
-
-  @ApiProperty({
-    required: false,
     type: () => PortfolioListRelationFilter,
   })
   @ValidateNested()

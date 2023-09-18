@@ -15,7 +15,6 @@ export const LanguageList = (props: ListProps): React.ReactElement => {
         <TextField label="Acronym" source="acronym" />
         <DateField source="createdAt" label="Created At" />
         <TextField label="Id" source="id" />
-        <TextField label="Name" source="name" />
         <DateField source="updatedAt" label="Updated At" />
       </Datagrid>
     </List>

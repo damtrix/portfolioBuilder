@@ -16,7 +16,6 @@ export const LanguageEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <TextInput label="Acronym" source="acronym" />
-        <TextInput label="Name" source="name" />
         <ReferenceArrayInput
           source="portfolios"
           reference="Portfolio"

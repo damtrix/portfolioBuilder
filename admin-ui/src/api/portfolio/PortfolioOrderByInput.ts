@@ -8,6 +8,7 @@ export type PortfolioOrderByInput = {
   image?: SortOrder;
   info?: SortOrder;
   liveUrl?: SortOrder;
+  title?: SortOrder;
   updatedAt?: SortOrder;
   userId?: SortOrder;
 };
