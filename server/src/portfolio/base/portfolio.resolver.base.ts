@@ -9,27 +9,27 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import * as graphql from "@nestjs/graphql";
-import * as apollo from "apollo-server-express";
-import { isRecordNotFoundError } from "../../prisma.util";
-import { MetaQueryPayload } from "../../util/MetaQueryPayload";
-import * as nestAccessControl from "nest-access-control";
-import * as gqlACGuard from "../../auth/gqlAC.guard";
-import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
-import * as common from "@nestjs/common";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { CreatePortfolioArgs } from "./CreatePortfolioArgs";
-import { UpdatePortfolioArgs } from "./UpdatePortfolioArgs";
-import { DeletePortfolioArgs } from "./DeletePortfolioArgs";
-import { PortfolioCountArgs } from "./PortfolioCountArgs";
-import { PortfolioFindManyArgs } from "./PortfolioFindManyArgs";
-import { PortfolioFindUniqueArgs } from "./PortfolioFindUniqueArgs";
-import { Portfolio } from "./Portfolio";
-import { LanguageFindManyArgs } from "../../language/base/LanguageFindManyArgs";
-import { Language } from "../../language/base/Language";
-import { User } from "../../user/base/User";
-import { PortfolioService } from "../portfolio.service";
+import * as graphql from '@nestjs/graphql';
+import * as apollo from 'apollo-server-express';
+import { isRecordNotFoundError } from '../../prisma.util';
+import { MetaQueryPayload } from '../../util/MetaQueryPayload';
+import * as nestAccessControl from 'nest-access-control';
+import * as gqlACGuard from '../../auth/gqlAC.guard';
+import { GqlDefaultAuthGuard } from '../../auth/gqlDefaultAuth.guard';
+import * as common from '@nestjs/common';
+import { AclFilterResponseInterceptor } from '../../interceptors/aclFilterResponse.interceptor';
+import { AclValidateRequestInterceptor } from '../../interceptors/aclValidateRequest.interceptor';
+import { CreatePortfolioArgs } from './CreatePortfolioArgs';
+import { UpdatePortfolioArgs } from './UpdatePortfolioArgs';
+import { DeletePortfolioArgs } from './DeletePortfolioArgs';
+import { PortfolioCountArgs } from './PortfolioCountArgs';
+import { PortfolioFindManyArgs } from './PortfolioFindManyArgs';
+import { PortfolioFindUniqueArgs } from './PortfolioFindUniqueArgs';
+import { Portfolio } from './Portfolio';
+import { LanguageFindManyArgs } from '../../language/base/LanguageFindManyArgs';
+import { Language } from '../../language/base/Language';
+import { User } from '../../user/base/User';
+import { PortfolioService } from '../portfolio.service';
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Portfolio)
 export class PortfolioResolverBase {
@@ -40,9 +40,9 @@ export class PortfolioResolverBase {
 
   @graphql.Query(() => MetaQueryPayload)
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "read",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'read',
+    possession: 'any',
   })
   async _portfoliosMeta(
     @graphql.Args() args: PortfolioCountArgs
@@ -56,9 +56,9 @@ export class PortfolioResolverBase {
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => [Portfolio])
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "read",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'read',
+    possession: 'any',
   })
   async portfolios(
     @graphql.Args() args: PortfolioFindManyArgs
@@ -69,9 +69,9 @@ export class PortfolioResolverBase {
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.Query(() => Portfolio, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "read",
-    possession: "own",
+    resource: 'Portfolio',
+    action: 'read',
+    possession: 'own',
   })
   async portfolio(
     @graphql.Args() args: PortfolioFindUniqueArgs
@@ -86,9 +86,9 @@ export class PortfolioResolverBase {
   @common.UseInterceptors(AclValidateRequestInterceptor)
   @graphql.Mutation(() => Portfolio)
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "create",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'create',
+    possession: 'any',
   })
   async createPortfolio(
     @graphql.Args() args: CreatePortfolioArgs
@@ -108,9 +108,9 @@ export class PortfolioResolverBase {
   @common.UseInterceptors(AclValidateRequestInterceptor)
   @graphql.Mutation(() => Portfolio)
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "update",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'update',
+    possession: 'any',
   })
   async updatePortfolio(
     @graphql.Args() args: UpdatePortfolioArgs
@@ -138,9 +138,9 @@ export class PortfolioResolverBase {
 
   @graphql.Mutation(() => Portfolio)
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "delete",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'delete',
+    possession: 'any',
   })
   async deletePortfolio(
     @graphql.Args() args: DeletePortfolioArgs
@@ -158,11 +158,11 @@ export class PortfolioResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Language], { name: "language" })
+  @graphql.ResolveField(() => [Language], { name: 'language' })
   @nestAccessControl.UseRoles({
-    resource: "Language",
-    action: "read",
-    possession: "any",
+    resource: 'Language',
+    action: 'read',
+    possession: 'any',
   })
   async resolveFieldLanguage(
     @graphql.Parent() parent: Portfolio,
@@ -180,12 +180,12 @@ export class PortfolioResolverBase {
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => User, {
     nullable: true,
-    name: "user",
+    name: 'user',
   })
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "read",
-    possession: "any",
+    resource: 'User',
+    action: 'read',
+    possession: 'any',
   })
   async resolveFieldUser(
     @graphql.Parent() parent: Portfolio

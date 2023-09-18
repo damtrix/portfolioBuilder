@@ -9,33 +9,33 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import * as common from "@nestjs/common";
-import * as swagger from "@nestjs/swagger";
-import { isRecordNotFoundError } from "../../prisma.util";
-import * as errors from "../../errors";
-import { Request } from "express";
-import { plainToClass } from "class-transformer";
-import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
-import * as nestAccessControl from "nest-access-control";
-import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
-import { UserService } from "../user.service";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
-import { UserCreateInput } from "./UserCreateInput";
-import { UserWhereInput } from "./UserWhereInput";
-import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
-import { UserFindManyArgs } from "./UserFindManyArgs";
-import { UserUpdateInput } from "./UserUpdateInput";
-import { User } from "./User";
-import { HomeFindManyArgs } from "../../home/base/HomeFindManyArgs";
-import { Home } from "../../home/base/Home";
-import { HomeWhereUniqueInput } from "../../home/base/HomeWhereUniqueInput";
-import { PortfolioFindManyArgs } from "../../portfolio/base/PortfolioFindManyArgs";
-import { Portfolio } from "../../portfolio/base/Portfolio";
-import { PortfolioWhereUniqueInput } from "../../portfolio/base/PortfolioWhereUniqueInput";
-import { TechnicalSkillFindManyArgs } from "../../technicalSkill/base/TechnicalSkillFindManyArgs";
-import { TechnicalSkill } from "../../technicalSkill/base/TechnicalSkill";
-import { TechnicalSkillWhereUniqueInput } from "../../technicalSkill/base/TechnicalSkillWhereUniqueInput";
+import * as common from '@nestjs/common';
+import * as swagger from '@nestjs/swagger';
+import { isRecordNotFoundError } from '../../prisma.util';
+import * as errors from '../../errors';
+import { Request } from 'express';
+import { plainToClass } from 'class-transformer';
+import { ApiNestedQuery } from '../../decorators/api-nested-query.decorator';
+import * as nestAccessControl from 'nest-access-control';
+import * as defaultAuthGuard from '../../auth/defaultAuth.guard';
+import { UserService } from '../user.service';
+import { AclValidateRequestInterceptor } from '../../interceptors/aclValidateRequest.interceptor';
+import { AclFilterResponseInterceptor } from '../../interceptors/aclFilterResponse.interceptor';
+import { UserCreateInput } from './UserCreateInput';
+import { UserWhereInput } from './UserWhereInput';
+import { UserWhereUniqueInput } from './UserWhereUniqueInput';
+import { UserFindManyArgs } from './UserFindManyArgs';
+import { UserUpdateInput } from './UserUpdateInput';
+import { User } from './User';
+import { HomeFindManyArgs } from '../../home/base/HomeFindManyArgs';
+import { Home } from '../../home/base/Home';
+import { HomeWhereUniqueInput } from '../../home/base/HomeWhereUniqueInput';
+import { PortfolioFindManyArgs } from '../../portfolio/base/PortfolioFindManyArgs';
+import { Portfolio } from '../../portfolio/base/Portfolio';
+import { PortfolioWhereUniqueInput } from '../../portfolio/base/PortfolioWhereUniqueInput';
+import { TechnicalSkillFindManyArgs } from '../../technicalSkill/base/TechnicalSkillFindManyArgs';
+import { TechnicalSkill } from '../../technicalSkill/base/TechnicalSkill';
+import { TechnicalSkillWhereUniqueInput } from '../../technicalSkill/base/TechnicalSkillWhereUniqueInput';
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -48,9 +48,9 @@ export class UserControllerBase {
   @common.Post()
   @swagger.ApiCreatedResponse({ type: User })
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "create",
-    possession: "any",
+    resource: 'User',
+    action: 'create',
+    possession: 'any',
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
@@ -83,9 +83,9 @@ export class UserControllerBase {
   @swagger.ApiOkResponse({ type: [User] })
   @ApiNestedQuery(UserFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "read",
-    possession: "any",
+    resource: 'User',
+    action: 'read',
+    possession: 'any',
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
@@ -115,13 +115,13 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id")
+  @common.Get('/:id')
   @swagger.ApiOkResponse({ type: User })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "read",
-    possession: "own",
+    resource: 'User',
+    action: 'read',
+    possession: 'own',
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
@@ -158,13 +158,13 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @common.Patch("/:id")
+  @common.Patch('/:id')
   @swagger.ApiOkResponse({ type: User })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
+    resource: 'User',
+    action: 'update',
+    possession: 'any',
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
@@ -205,13 +205,13 @@ export class UserControllerBase {
     }
   }
 
-  @common.Delete("/:id")
+  @common.Delete('/:id')
   @swagger.ApiOkResponse({ type: User })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "delete",
-    possession: "any",
+    resource: 'User',
+    action: 'delete',
+    possession: 'any',
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
@@ -251,12 +251,12 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/home")
+  @common.Get('/:id/home')
   @ApiNestedQuery(HomeFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "Home",
-    action: "read",
-    possession: "any",
+    resource: 'Home',
+    action: 'read',
+    possession: 'any',
   })
   async findManyHome(
     @common.Req() request: Request,
@@ -287,11 +287,11 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/home")
+  @common.Post('/:id/home')
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
+    resource: 'User',
+    action: 'update',
+    possession: 'any',
   })
   async connectHome(
     @common.Param() params: UserWhereUniqueInput,
@@ -309,11 +309,11 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/home")
+  @common.Patch('/:id/home')
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
+    resource: 'User',
+    action: 'update',
+    possession: 'any',
   })
   async updateHome(
     @common.Param() params: UserWhereUniqueInput,
@@ -331,11 +331,11 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/home")
+  @common.Delete('/:id/home')
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
+    resource: 'User',
+    action: 'update',
+    possession: 'any',
   })
   async disconnectHome(
     @common.Param() params: UserWhereUniqueInput,
@@ -354,12 +354,12 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/portfolios")
+  @common.Get('/:id/portfolios')
   @ApiNestedQuery(PortfolioFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "read",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'read',
+    possession: 'any',
   })
   async findManyPortfolios(
     @common.Req() request: Request,
@@ -394,11 +394,11 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/portfolios")
+  @common.Post('/:id/portfolios')
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
+    resource: 'User',
+    action: 'update',
+    possession: 'any',
   })
   async connectPortfolios(
     @common.Param() params: UserWhereUniqueInput,
@@ -416,11 +416,11 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/portfolios")
+  @common.Patch('/:id/portfolios')
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
+    resource: 'User',
+    action: 'update',
+    possession: 'any',
   })
   async updatePortfolios(
     @common.Param() params: UserWhereUniqueInput,
@@ -438,11 +438,11 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/portfolios")
+  @common.Delete('/:id/portfolios')
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
+    resource: 'User',
+    action: 'update',
+    possession: 'any',
   })
   async disconnectPortfolios(
     @common.Param() params: UserWhereUniqueInput,
@@ -461,12 +461,12 @@ export class UserControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/technicalSkills")
+  @common.Get('/:id/technicalSkills')
   @ApiNestedQuery(TechnicalSkillFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "TechnicalSkill",
-    action: "read",
-    possession: "any",
+    resource: 'TechnicalSkill',
+    action: 'read',
+    possession: 'any',
   })
   async findManyTechnicalSkills(
     @common.Req() request: Request,
@@ -497,11 +497,11 @@ export class UserControllerBase {
     return results;
   }
 
-  @common.Post("/:id/technicalSkills")
+  @common.Post('/:id/technicalSkills')
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
+    resource: 'User',
+    action: 'update',
+    possession: 'any',
   })
   async connectTechnicalSkills(
     @common.Param() params: UserWhereUniqueInput,
@@ -519,11 +519,11 @@ export class UserControllerBase {
     });
   }
 
-  @common.Patch("/:id/technicalSkills")
+  @common.Patch('/:id/technicalSkills')
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
+    resource: 'User',
+    action: 'update',
+    possession: 'any',
   })
   async updateTechnicalSkills(
     @common.Param() params: UserWhereUniqueInput,
@@ -541,11 +541,11 @@ export class UserControllerBase {
     });
   }
 
-  @common.Delete("/:id/technicalSkills")
+  @common.Delete('/:id/technicalSkills')
   @nestAccessControl.UseRoles({
-    resource: "User",
-    action: "update",
-    possession: "any",
+    resource: 'User',
+    action: 'update',
+    possession: 'any',
   })
   async disconnectTechnicalSkills(
     @common.Param() params: UserWhereUniqueInput,

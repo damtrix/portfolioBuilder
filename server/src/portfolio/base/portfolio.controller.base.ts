@@ -9,27 +9,29 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import * as common from "@nestjs/common";
-import * as swagger from "@nestjs/swagger";
-import { isRecordNotFoundError } from "../../prisma.util";
-import * as errors from "../../errors";
-import { Request } from "express";
-import { plainToClass } from "class-transformer";
-import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
-import * as nestAccessControl from "nest-access-control";
-import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
-import { PortfolioService } from "../portfolio.service";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
-import { PortfolioCreateInput } from "./PortfolioCreateInput";
-import { PortfolioWhereInput } from "./PortfolioWhereInput";
-import { PortfolioWhereUniqueInput } from "./PortfolioWhereUniqueInput";
-import { PortfolioFindManyArgs } from "./PortfolioFindManyArgs";
-import { PortfolioUpdateInput } from "./PortfolioUpdateInput";
-import { Portfolio } from "./Portfolio";
-import { LanguageFindManyArgs } from "../../language/base/LanguageFindManyArgs";
-import { Language } from "../../language/base/Language";
-import { LanguageWhereUniqueInput } from "../../language/base/LanguageWhereUniqueInput";
+import * as common from '@nestjs/common';
+import * as swagger from '@nestjs/swagger';
+import { isRecordNotFoundError } from '../../prisma.util';
+import * as errors from '../../errors';
+import { Request } from 'express';
+import { plainToClass } from 'class-transformer';
+import { ApiNestedQuery } from '../../decorators/api-nested-query.decorator';
+import * as nestAccessControl from 'nest-access-control';
+import * as defaultAuthGuard from '../../auth/defaultAuth.guard';
+import { PortfolioService } from '../portfolio.service';
+import { AclValidateRequestInterceptor } from '../../interceptors/aclValidateRequest.interceptor';
+import { AclFilterResponseInterceptor } from '../../interceptors/aclFilterResponse.interceptor';
+import { PortfolioCreateInput } from './PortfolioCreateInput';
+import { PortfolioWhereInput } from './PortfolioWhereInput';
+import { PortfolioWhereUniqueInput } from './PortfolioWhereUniqueInput';
+import { PortfolioFindManyArgs } from './PortfolioFindManyArgs';
+import { PortfolioUpdateInput } from './PortfolioUpdateInput';
+import { Portfolio } from './Portfolio';
+import { LanguageFindManyArgs } from '../../language/base/LanguageFindManyArgs';
+import { Language } from '../../language/base/Language';
+import { LanguageWhereUniqueInput } from '../../language/base/LanguageWhereUniqueInput';
+import { UserInfo } from 'src/auth/UserInfo';
+import { User } from 'src/decorators/public.decorator';
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -42,40 +44,20 @@ export class PortfolioControllerBase {
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Portfolio })
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "create",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'create',
+    possession: 'any',
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
-  async create(@common.Body() data: PortfolioCreateInput): Promise<Portfolio> {
-    return await this.service.create({
-      data: {
-        ...data,
 
-        user: {
-          connect: data.user,
-        },
-      },
-      select: {
-        category: true,
-        createdAt: true,
-        githubUrl: true,
-        id: true,
-        image: true,
-        info: true,
-        liveUrl: true,
-        title: true,
-        updatedAt: true,
+ createPortofio(
+    @common.Body() body: PortfolioCreateInput,
+    @User() user: UserInfo
+  ) {
+    return this.service.createPorfolio(body, user.id);
 
-        user: {
-          select: {
-            id: true,
-          },
-        },
-      },
-    });
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
@@ -83,9 +65,9 @@ export class PortfolioControllerBase {
   @swagger.ApiOkResponse({ type: [Portfolio] })
   @ApiNestedQuery(PortfolioFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "read",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'read',
+    possession: 'any',
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
@@ -104,6 +86,7 @@ export class PortfolioControllerBase {
         liveUrl: true,
         title: true,
         updatedAt: true,
+        language: true,
 
         user: {
           select: {
@@ -115,13 +98,13 @@ export class PortfolioControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id")
+  @common.Get('/:id')
   @swagger.ApiOkResponse({ type: Portfolio })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "read",
-    possession: "own",
+    resource: 'Portfolio',
+    action: 'read',
+    possession: 'own',
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
@@ -158,13 +141,13 @@ export class PortfolioControllerBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @common.Patch("/:id")
+  @common.Patch('/:id')
   @swagger.ApiOkResponse({ type: Portfolio })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "update",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'update',
+    possession: 'any',
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
@@ -211,13 +194,13 @@ export class PortfolioControllerBase {
     }
   }
 
-  @common.Delete("/:id")
+  @common.Delete('/:id')
   @swagger.ApiOkResponse({ type: Portfolio })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "delete",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'delete',
+    possession: 'any',
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
@@ -257,12 +240,12 @@ export class PortfolioControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/language")
+  @common.Get('/:id/language')
   @ApiNestedQuery(LanguageFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "Language",
-    action: "read",
-    possession: "any",
+    resource: 'Language',
+    action: 'read',
+    possession: 'any',
   })
   async findManyLanguage(
     @common.Req() request: Request,
@@ -286,11 +269,11 @@ export class PortfolioControllerBase {
     return results;
   }
 
-  @common.Post("/:id/language")
+  @common.Post('/:id/language')
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "update",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'update',
+    possession: 'any',
   })
   async connectLanguage(
     @common.Param() params: PortfolioWhereUniqueInput,
@@ -308,11 +291,11 @@ export class PortfolioControllerBase {
     });
   }
 
-  @common.Patch("/:id/language")
+  @common.Patch('/:id/language')
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "update",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'update',
+    possession: 'any',
   })
   async updateLanguage(
     @common.Param() params: PortfolioWhereUniqueInput,
@@ -330,11 +313,11 @@ export class PortfolioControllerBase {
     });
   }
 
-  @common.Delete("/:id/language")
+  @common.Delete('/:id/language')
   @nestAccessControl.UseRoles({
-    resource: "Portfolio",
-    action: "update",
-    possession: "any",
+    resource: 'Portfolio',
+    action: 'update',
+    possession: 'any',
   })
   async disconnectLanguage(
     @common.Param() params: PortfolioWhereUniqueInput,
