@@ -8,5 +8,6 @@ export type PortfolioCreateInput = {
   info?: string | null;
   language?: LanguageCreateNestedManyWithoutPortfoliosInput;
   liveUrl?: string | null;
+  title: string;
   user: UserWhereUniqueInput;
 };

@@ -10,6 +10,7 @@ export type Portfolio = {
   info: string | null;
   language?: Array<Language>;
   liveUrl: string | null;
+  title: string;
   updatedAt: Date;
   user?: User;
 };

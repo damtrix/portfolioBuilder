@@ -26,6 +26,7 @@ const CREATE_INPUT = {
   image: "exampleImage",
   info: "exampleInfo",
   liveUrl: "exampleLiveUrl",
+  title: "exampleTitle",
   updatedAt: new Date(),
 };
 const CREATE_RESULT = {
@@ -36,6 +37,7 @@ const CREATE_RESULT = {
   image: "exampleImage",
   info: "exampleInfo",
   liveUrl: "exampleLiveUrl",
+  title: "exampleTitle",
   updatedAt: new Date(),
 };
 const FIND_MANY_RESULT = [
@@ -47,6 +49,7 @@ const FIND_MANY_RESULT = [
     image: "exampleImage",
     info: "exampleInfo",
     liveUrl: "exampleLiveUrl",
+    title: "exampleTitle",
     updatedAt: new Date(),
   },
 ];
@@ -58,6 +61,7 @@ const FIND_ONE_RESULT = {
   image: "exampleImage",
   info: "exampleInfo",
   liveUrl: "exampleLiveUrl",
+  title: "exampleTitle",
   updatedAt: new Date(),
 };
 

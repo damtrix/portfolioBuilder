@@ -66,6 +66,7 @@ export class PortfolioControllerBase {
         image: true,
         info: true,
         liveUrl: true,
+        title: true,
         updatedAt: true,
 
         user: {
@@ -101,6 +102,7 @@ export class PortfolioControllerBase {
         image: true,
         info: true,
         liveUrl: true,
+        title: true,
         updatedAt: true,
 
         user: {
@@ -137,6 +139,7 @@ export class PortfolioControllerBase {
         image: true,
         info: true,
         liveUrl: true,
+        title: true,
         updatedAt: true,
 
         user: {
@@ -188,6 +191,7 @@ export class PortfolioControllerBase {
           image: true,
           info: true,
           liveUrl: true,
+          title: true,
           updatedAt: true,
 
           user: {
@@ -232,6 +236,7 @@ export class PortfolioControllerBase {
           image: true,
           info: true,
           liveUrl: true,
+          title: true,
           updatedAt: true,
 
           user: {
@@ -270,7 +275,6 @@ export class PortfolioControllerBase {
         acronym: true,
         createdAt: true,
         id: true,
-        name: true,
         updatedAt: true,
       },
     });

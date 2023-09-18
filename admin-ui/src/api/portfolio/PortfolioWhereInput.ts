@@ -13,6 +13,7 @@ export type PortfolioWhereInput = {
   info?: StringNullableFilter;
   language?: LanguageListRelationFilter;
   liveUrl?: StringNullableFilter;
+  title?: StringFilter;
   updatedAt?: DateTimeFilter;
   user?: UserWhereUniqueInput;
 };

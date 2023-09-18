@@ -91,6 +91,14 @@ class Portfolio {
 
   @ApiProperty({
     required: true,
+    type: String,
+  })
+  @IsString()
+  @Field(() => String)
+  title!: string;
+
+  @ApiProperty({
+    required: true,
   })
   @IsDate()
   @Type(() => Date)

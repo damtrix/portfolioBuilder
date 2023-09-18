@@ -2,6 +2,5 @@ import { PortfolioCreateNestedManyWithoutLanguagesInput } from "./PortfolioCreat
 
 export type LanguageCreateInput = {
   acronym: string;
-  name: string;
   portfolios?: PortfolioCreateNestedManyWithoutLanguagesInput;
 };

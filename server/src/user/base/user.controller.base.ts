@@ -376,6 +376,7 @@ export class UserControllerBase {
         image: true,
         info: true,
         liveUrl: true,
+        title: true,
         updatedAt: true,
 
         user: {

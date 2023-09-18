@@ -53,7 +53,6 @@ model Language {
   acronym    String
   createdAt  DateTime    @default(now())
   id         String      @id @default(cuid())
-  name       String
   portfolios Portfolio[]
   updatedAt  DateTime    @updatedAt
 }
@@ -67,6 +66,7 @@ model Portfolio {
   info      String?
   language  Language[]
   liveUrl   String?
+  title     String
   updatedAt DateTime   @updatedAt
   user      User       @relation(fields: [userId], references: [id])
   userId    String

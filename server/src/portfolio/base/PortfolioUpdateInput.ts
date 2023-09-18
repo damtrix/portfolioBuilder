@@ -87,6 +87,17 @@ class PortfolioUpdateInput {
 
   @ApiProperty({
     required: false,
+    type: String,
+  })
+  @IsString()
+  @IsOptional()
+  @Field(() => String, {
+    nullable: true,
+  })
+  title?: string;
+
+  @ApiProperty({
+    required: false,
     type: () => UserWhereUniqueInput,
   })
   @ValidateNested()
