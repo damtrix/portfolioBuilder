@@ -26,6 +26,7 @@ import { LanguageCountArgs } from "./LanguageCountArgs";
 import { LanguageFindManyArgs } from "./LanguageFindManyArgs";
 import { LanguageFindUniqueArgs } from "./LanguageFindUniqueArgs";
 import { Language } from "./Language";
+import { PortfolioFindManyArgs } from "../../portfolio/base/PortfolioFindManyArgs";
 import { Portfolio } from "../../portfolio/base/Portfolio";
 import { LanguageService } from "../language.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -93,13 +94,7 @@ export class LanguageResolverBase {
   ): Promise<Language> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        portfolios: {
-          connect: args.data.portfolios,
-        },
-      },
+      data: args.data,
     });
   }
 
@@ -116,13 +111,7 @@ export class LanguageResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          portfolios: {
-            connect: args.data.portfolios,
-          },
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -156,23 +145,22 @@ export class LanguageResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Portfolio, {
-    nullable: true,
-    name: "portfolios",
-  })
+  @graphql.ResolveField(() => [Portfolio], { name: "portfolios" })
   @nestAccessControl.UseRoles({
     resource: "Portfolio",
     action: "read",
     possession: "any",
   })
   async resolveFieldPortfolios(
-    @graphql.Parent() parent: Language
-  ): Promise<Portfolio | null> {
-    const result = await this.service.getPortfolios(parent.id);
+    @graphql.Parent() parent: Language,
+    @graphql.Args() args: PortfolioFindManyArgs
+  ): Promise<Portfolio[]> {
+    const results = await this.service.findPortfolios(parent.id, args);
 
-    if (!result) {
-      return null;
+    if (!results) {
+      return [];
     }
-    return result;
+
+    return results;
   }
 }

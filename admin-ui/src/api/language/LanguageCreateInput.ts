@@ -1,7 +1,7 @@
-import { PortfolioWhereUniqueInput } from "../portfolio/PortfolioWhereUniqueInput";
+import { PortfolioCreateNestedManyWithoutLanguagesInput } from "./PortfolioCreateNestedManyWithoutLanguagesInput";
 
 export type LanguageCreateInput = {
   acronym: string;
   name: string;
-  portfolios: PortfolioWhereUniqueInput;
+  portfolios?: PortfolioCreateNestedManyWithoutLanguagesInput;
 };

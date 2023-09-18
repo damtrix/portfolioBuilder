@@ -1,7 +1,7 @@
-import { PortfolioWhereUniqueInput } from "../portfolio/PortfolioWhereUniqueInput";
+import { PortfolioUpdateManyWithoutLanguagesInput } from "./PortfolioUpdateManyWithoutLanguagesInput";
 
 export type LanguageUpdateInput = {
   acronym?: string;
   name?: string;
-  portfolios?: PortfolioWhereUniqueInput;
+  portfolios?: PortfolioUpdateManyWithoutLanguagesInput;
 };

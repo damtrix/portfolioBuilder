@@ -27,6 +27,9 @@ import { LanguageWhereUniqueInput } from "./LanguageWhereUniqueInput";
 import { LanguageFindManyArgs } from "./LanguageFindManyArgs";
 import { LanguageUpdateInput } from "./LanguageUpdateInput";
 import { Language } from "./Language";
+import { PortfolioFindManyArgs } from "../../portfolio/base/PortfolioFindManyArgs";
+import { Portfolio } from "../../portfolio/base/Portfolio";
+import { PortfolioWhereUniqueInput } from "../../portfolio/base/PortfolioWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -48,25 +51,12 @@ export class LanguageControllerBase {
   })
   async create(@common.Body() data: LanguageCreateInput): Promise<Language> {
     return await this.service.create({
-      data: {
-        ...data,
-
-        portfolios: {
-          connect: data.portfolios,
-        },
-      },
+      data: data,
       select: {
         acronym: true,
         createdAt: true,
         id: true,
         name: true,
-
-        portfolios: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
       },
     });
@@ -93,13 +83,6 @@ export class LanguageControllerBase {
         createdAt: true,
         id: true,
         name: true,
-
-        portfolios: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
       },
     });
@@ -127,13 +110,6 @@ export class LanguageControllerBase {
         createdAt: true,
         id: true,
         name: true,
-
-        portfolios: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
       },
     });
@@ -164,25 +140,12 @@ export class LanguageControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: {
-          ...data,
-
-          portfolios: {
-            connect: data.portfolios,
-          },
-        },
+        data: data,
         select: {
           acronym: true,
           createdAt: true,
           id: true,
           name: true,
-
-          portfolios: {
-            select: {
-              id: true,
-            },
-          },
-
           updatedAt: true,
         },
       });
@@ -218,13 +181,6 @@ export class LanguageControllerBase {
           createdAt: true,
           id: true,
           name: true,
-
-          portfolios: {
-            select: {
-              id: true,
-            },
-          },
-
           updatedAt: true,
         },
       });
@@ -236,5 +192,111 @@ export class LanguageControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/portfolios")
+  @ApiNestedQuery(PortfolioFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "Portfolio",
+    action: "read",
+    possession: "any",
+  })
+  async findManyPortfolios(
+    @common.Req() request: Request,
+    @common.Param() params: LanguageWhereUniqueInput
+  ): Promise<Portfolio[]> {
+    const query = plainToClass(PortfolioFindManyArgs, request.query);
+    const results = await this.service.findPortfolios(params.id, {
+      ...query,
+      select: {
+        category: true,
+        createdAt: true,
+        githubUrl: true,
+        id: true,
+        image: true,
+        info: true,
+        liveUrl: true,
+        updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/portfolios")
+  @nestAccessControl.UseRoles({
+    resource: "Language",
+    action: "update",
+    possession: "any",
+  })
+  async connectPortfolios(
+    @common.Param() params: LanguageWhereUniqueInput,
+    @common.Body() body: PortfolioWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      portfolios: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/portfolios")
+  @nestAccessControl.UseRoles({
+    resource: "Language",
+    action: "update",
+    possession: "any",
+  })
+  async updatePortfolios(
+    @common.Param() params: LanguageWhereUniqueInput,
+    @common.Body() body: PortfolioWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      portfolios: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/portfolios")
+  @nestAccessControl.UseRoles({
+    resource: "Language",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectPortfolios(
+    @common.Param() params: LanguageWhereUniqueInput,
+    @common.Body() body: PortfolioWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      portfolios: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

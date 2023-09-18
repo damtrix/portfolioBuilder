@@ -5,6 +5,5 @@ export type LanguageOrderByInput = {
   createdAt?: SortOrder;
   id?: SortOrder;
   name?: SortOrder;
-  portfoliosId?: SortOrder;
   updatedAt?: SortOrder;
 };

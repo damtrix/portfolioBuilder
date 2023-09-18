@@ -12,7 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { PortfolioWhereUniqueInput } from "../../portfolio/base/PortfolioWhereUniqueInput";
+import { PortfolioUpdateManyWithoutLanguagesInput } from "./PortfolioUpdateManyWithoutLanguagesInput";
 import { Type } from "class-transformer";
 
 @InputType()
@@ -41,15 +41,15 @@ class LanguageUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => PortfolioWhereUniqueInput,
+    type: () => PortfolioUpdateManyWithoutLanguagesInput,
   })
   @ValidateNested()
-  @Type(() => PortfolioWhereUniqueInput)
+  @Type(() => PortfolioUpdateManyWithoutLanguagesInput)
   @IsOptional()
-  @Field(() => PortfolioWhereUniqueInput, {
+  @Field(() => PortfolioUpdateManyWithoutLanguagesInput, {
     nullable: true,
   })
-  portfolios?: PortfolioWhereUniqueInput;
+  portfolios?: PortfolioUpdateManyWithoutLanguagesInput;
 }
 
 export { LanguageUpdateInput as LanguageUpdateInput };

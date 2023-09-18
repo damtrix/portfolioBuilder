@@ -1,12 +1,14 @@
 import * as React from "react";
+
 import {
   Create,
   SimpleForm,
   CreateProps,
   TextInput,
-  ReferenceInput,
-  SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
+
 import { PortfolioTitle } from "../portfolio/PortfolioTitle";
 
 export const LanguageCreate = (props: CreateProps): React.ReactElement => {
@@ -15,13 +17,14 @@ export const LanguageCreate = (props: CreateProps): React.ReactElement => {
       <SimpleForm>
         <TextInput label="Acronym" source="acronym" />
         <TextInput label="Name" source="name" />
-        <ReferenceInput
-          source="portfolios.id"
+        <ReferenceArrayInput
+          source="portfolios"
           reference="Portfolio"
-          label="Portfolios"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectInput optionText={PortfolioTitle} />
-        </ReferenceInput>
+          <SelectArrayInput optionText={PortfolioTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Create>
   );

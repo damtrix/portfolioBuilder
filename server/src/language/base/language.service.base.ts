@@ -47,11 +47,14 @@ export class LanguageServiceBase {
     return this.prisma.language.delete(args);
   }
 
-  async getPortfolios(parentId: string): Promise<Portfolio | null> {
+  async findPortfolios(
+    parentId: string,
+    args: Prisma.PortfolioFindManyArgs
+  ): Promise<Portfolio[]> {
     return this.prisma.language
-      .findUnique({
+      .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .portfolios();
+      .portfolios(args);
   }
 }
