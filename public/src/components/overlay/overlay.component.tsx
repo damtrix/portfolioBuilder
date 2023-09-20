@@ -1,7 +1,8 @@
-import { useGlobalContext } from '../../service/context/app.context';
+import { useAppSelector } from '../../store/hook';
+import { navBarSelector } from '../../store/navBar/navBarSlice';
 
 export const Overlay = () => {
-  const { navOpen } = useGlobalContext();
+  const { navOpen } = useAppSelector(navBarSelector);
 
   return (
     <div

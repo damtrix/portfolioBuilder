@@ -89,6 +89,7 @@ export class PortfolioServiceBase {
         info: true,
         liveUrl: true,
         updatedAt: true,
+        title: true,
         userId: true,
 
         user: {

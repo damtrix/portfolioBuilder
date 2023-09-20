@@ -10,11 +10,7 @@ export interface project {
   live?: string;
   slug?: string;
   info: string;
-  images: {
-    mobil?: string;
-    tablet?: string;
-    desktop?: string;
-  };
+  images: string;
 }
 
 export type projectContextType = {

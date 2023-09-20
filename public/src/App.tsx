@@ -7,11 +7,27 @@ import { Home } from './pages/home/home.page';
 import { Route, Routes } from 'react-router-dom';
 import { Footer } from './components/footer/footer.component';
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from './store/hook';
-import { addUser, userSelector } from './store/user/userSlice';
+import { useAppDispatch } from './store/hook';
+import { addUser } from './store/user/userSlice';
 import { checkUser } from './lib/auth';
 
 function App() {
+  const [render, setRender] = useState(false);
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const dat = async () => {
+      await checkUser().then((result) => {
+        if (result) {
+          if (!render) {
+            dispatch(addUser(result.data[0]));
+            setRender(true);
+          }
+        }
+      });
+    };
+    dat();
+  }, []);
+
   return (
     <main>
       <div className=' max-w-[80%] mx-auto my-0 mt-12'>

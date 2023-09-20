@@ -4,6 +4,9 @@ import linkedblue from '../../assets/images/linked-blue.svg';
 import twitterblue from '../../assets/images/twitter-blue.svg';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useAppSelector } from '../../store/hook';
+import { userSelector } from '../../store/user/userSlice';
+import { useState } from 'react';
 
 export const Contact = () => {
   type FormValues = {
@@ -45,7 +48,10 @@ export const Contact = () => {
     alert('Thanks for your message, I will respond as soon as possible');
     reset();
   };
-  const baseURL = 'https://formspree.io/f/xjvqydbg';
+  // const baseURL = 'https://formspree.io/f/xjvqydbg';
+  const baseURL = '';
+  const user = useAppSelector(userSelector);
+  const [username] = useState(user[0]);
   return (
     <div className=' flex flex-col mt-6 md:mt-12'>
       <div className=' grid grid-cols-1 md:grid-cols-2 gap-3 md:border-y-2 border-pfLightGrey2 py-4 md:py-12'>
@@ -60,14 +66,7 @@ export const Contact = () => {
             className=' text-lg md:text-base leading-10 md:leading-8 tracking-wide my-2 md:my-4'
             data-aos='fade-left'
             data-aos-delay='200'>
-            I’d love to hear about what you’re working on and how I could help.
-            I’m currently looking for a new role and am open to a wide range of
-            opportunities. My preference would be to find a position in a
-            company in Nigeria. But I’m also happy to hear about opportunites
-            that don’t fit that description. I’m a hard-working and positive
-            person who will always approach each task with a sense of purpose
-            and attention to detail. Please do feel free to check out my online
-            profiles below and get in touch using the form.
+            {username?.message}
           </p>
           <div className=' flex w-1/2 mt-6 md:mt-0 md:w-1/6 justify-between '>
             <NavLink className=' w-12 md:w-0' to='https://github.com/damtrix'>
@@ -109,7 +108,7 @@ export const Contact = () => {
               }`}
               id='name'
               type='text'
-              placeholder='Damtrix'
+              placeholder={username?.username}
               {...register('name', {
                 required: 'This field is required',
               })}
@@ -132,7 +131,7 @@ export const Contact = () => {
               }`}
               type='email'
               id='email'
-              placeholder='oludamola.onarinde@gmail.com'
+              placeholder={username?.email}
               {...register('email', {
                 required: 'This field is required',
                 pattern: {

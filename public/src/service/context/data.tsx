@@ -155,7 +155,7 @@ const projects = [
     title: 'Loop Studio',
     lang: ['HTML', 'CSS', 'JS'],
     url: 'https://github.com/Aycom366/Loop-Studio',
-    live: 'http://loop-studio-aycom366.vercel.app/  ',
+    live: 'http://loop-studio-aycom366.vercel.app/',
     slug: 'loop-website',
     info: 'A Fully fledged E-Commerce developed using React Framework. AudioPhile sells gadgets like Heaphones, EarPhones, Speakers of all models',
     images: {

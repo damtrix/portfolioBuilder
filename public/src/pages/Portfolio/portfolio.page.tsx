@@ -1,24 +1,31 @@
 import React from 'react';
-import { project, useGlobalContext } from '../../service/context/app.context';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LanguageIcon from '@mui/icons-material/Language';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../store/hook';
+import { portfolioParams, userSelector } from '../../store/user/userSlice';
 
 export const Portfolio = () => {
-  const { projects, dropDownCategories } = useGlobalContext();
-  const [categories, setcategories] = React.useState<project[]>(projects);
+  const user = useAppSelector(userSelector);
+  const [categories, setcategories] = React.useState<portfolioParams[]>(
+    user[0]?.portfolios || []
+  );
 
-  // console.log(dropDownCategories);
-  // console.log(categories);
+  const dropDownCategories = [
+    'All',
+    ...new Set(user[0]?.portfolios.map((category) => category.category)),
+  ];
 
   const filterItem = (category: string) => {
     if (category === 'All') {
-      setcategories(projects);
+      setcategories(user[0]?.portfolios);
       return;
     }
 
     //if category is not all
-    const newItems = projects.filter((item) => item.category === category);
+    const newItems = user[0]?.portfolios.filter(
+      (item) => item.category === category
+    );
     setcategories(newItems);
   };
 
@@ -59,16 +66,16 @@ export const Portfolio = () => {
 
       <div className=' w-full grid md:grid-cols-3 mb-16 gap-x-12 gap-y-6 overflow-hidden'>
         {categories.map((category, index) => {
-          const { title, images, lang, live, url } = category;
+          const { title, image, language, liveUrl, githubUrl, id } = category;
           return (
             <div
               data-aos={`${index % 2 === 1 ? 'fade-right' : 'flip-up'}`}
-              key={index}
+              key={id}
               className=' shadow-1l w-full transition-all duration-500 text-center h-auto'>
               <div className=' w-full h-[300px] hover:transition-all hover:shadow-2l hover:scale-105 hover:grid-cols-1 '>
                 <img
                   className=' w-full h-full object-cover'
-                  src={images.mobil}
+                  src={image}
                   alt={title}
                 />
               </div>
@@ -78,18 +85,18 @@ export const Portfolio = () => {
                   {title}
                 </h3>
                 <div className=' w-full flex justify-center'>
-                  {lang.map((lan, index) => {
+                  {language.map((lang) => {
                     return (
                       <p
                         className=' bg-[#dae2ec] py-[0.15rem] px-[0.35rem] bottom-1 uppercase text-xs md:text-sm block mt-[0.2rem] mx-[0.2rem] mb-[0px]'
-                        key={index}>
-                        {lan}
+                        key={lang.id}>
+                        {lang.acronym}
                       </p>
                     );
                   })}
                 </div>
                 <div className=' bg-[#daedfb] w-full text-[#2680c0] flex justify-between p-3'>
-                  <Link to={{ pathname: `${url}` }} target='_blank'>
+                  <Link to={{ pathname: `${githubUrl}` }} target='_blank'>
                     <GitHubIcon className='icon' />
                   </Link>
                   <Link
@@ -97,8 +104,8 @@ export const Portfolio = () => {
                     className=' uppercase transition-all inline-block py-[0.25rem] px-[0px] '>
                     Details
                   </Link>
-                  {live && (
-                    <Link to={{ pathname: `${live}` }} target='_blank'>
+                  {liveUrl && (
+                    <Link to={{ pathname: `${liveUrl}` }} target='_blank'>
                       <LanguageIcon className='icon' />
                     </Link>
                   )}

@@ -2,8 +2,13 @@ import { Link, NavLink } from 'react-router-dom';
 import github from '../../assets/images/github.svg';
 import linkedin from '../../assets/images/linkedin.svg';
 import twitter from '../../assets/images/twitter.svg';
+import { userSelector } from '../../store/user/userSlice';
+import { useAppSelector } from '../../store/hook';
 
 export const Footer = () => {
+  const user = useAppSelector(userSelector);
+  const { username, githubLink, twitterLink, linkedinLink } = user[0] || [];
+
   const getYear = () => {
     const year = new Date().getFullYear();
     return year;
@@ -46,20 +51,20 @@ export const Footer = () => {
             </div>
           </div>
           <div className=' flex  justify-around w-32'>
-            <NavLink to='https://github.com/damtrix'>
+            <NavLink to={githubLink}>
               <img src={github} alt='Github' />
             </NavLink>
-            <NavLink to=''>
+            <NavLink to={twitterLink}>
               <img src={twitter} alt='Github' />
             </NavLink>
-            <NavLink to=''>
+            <NavLink to={linkedinLink}>
               <img src={linkedin} alt='linkedin' />
             </NavLink>
           </div>
         </div>
         <p className=' text-base md:text-sm text-pfBgLightGrey text-center mb-5'>
           &copy;
-          <span> {getYear()}</span> Damtrix. All Rights Reserved.
+          <span> {getYear()}</span> {username}. All Rights Reserved.
         </p>
       </div>
     </footer>

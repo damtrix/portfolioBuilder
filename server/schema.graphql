@@ -91,14 +91,12 @@ type Language {
   acronym: String!
   createdAt: DateTime!
   id: String!
-  name: String!
   portfolios(orderBy: [PortfolioOrderByInput!], skip: Float, take: Float, where: PortfolioWhereInput): [Portfolio!]!
   updatedAt: DateTime!
 }
 
 input LanguageCreateInput {
   acronym: String!
-  name: String!
   portfolios: PortfolioCreateNestedManyWithoutLanguagesInput
 }
 
@@ -116,13 +114,11 @@ input LanguageOrderByInput {
   acronym: SortOrder
   createdAt: SortOrder
   id: SortOrder
-  name: SortOrder
   updatedAt: SortOrder
 }
 
 input LanguageUpdateInput {
   acronym: String
-  name: String
   portfolios: PortfolioUpdateManyWithoutLanguagesInput
 }
 
@@ -136,7 +132,6 @@ input LanguageWhereInput {
   acronym: StringFilter
   createdAt: DateTimeFilter
   id: StringFilter
-  name: StringFilter
   portfolios: PortfolioListRelationFilter
   updatedAt: DateTimeFilter
 }
@@ -177,6 +172,7 @@ type Portfolio {
   info: String
   language(orderBy: [LanguageOrderByInput!], skip: Float, take: Float, where: LanguageWhereInput): [Language!]!
   liveUrl: String
+  title: String!
   updatedAt: DateTime!
   user: User
 }
@@ -188,6 +184,7 @@ input PortfolioCreateInput {
   info: String
   language: LanguageCreateNestedManyWithoutPortfoliosInput
   liveUrl: String
+  title: String!
   user: UserWhereUniqueInput!
 }
 
@@ -213,6 +210,7 @@ input PortfolioOrderByInput {
   image: SortOrder
   info: SortOrder
   liveUrl: SortOrder
+  title: SortOrder
   updatedAt: SortOrder
   userId: SortOrder
 }
@@ -224,6 +222,7 @@ input PortfolioUpdateInput {
   info: String
   language: LanguageUpdateManyWithoutPortfoliosInput
   liveUrl: String
+  title: String
   user: UserWhereUniqueInput
 }
 
@@ -248,6 +247,7 @@ input PortfolioWhereInput {
   info: StringNullableFilter
   language: LanguageListRelationFilter
   liveUrl: StringNullableFilter
+  title: StringFilter
   updatedAt: DateTimeFilter
   user: UserWhereUniqueInput
 }
