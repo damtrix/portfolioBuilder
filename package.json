@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm-run-all -p start:frontend start:backend",
+    "start": "npm-run-all -p start:frontend start:admin start:backend",
     "start:frontend": "cross-env PORT=5000 npm --prefix public run dev",
     "start:admin": "npm --prefix admin-ui start",
     "start:backend": "npm run --prefix server start:watch",

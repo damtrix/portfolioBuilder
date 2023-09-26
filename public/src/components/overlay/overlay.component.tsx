@@ -8,7 +8,7 @@ export const Overlay = () => {
     <div
       className={`${
         navOpen
-          ? 'block fixed bg-pfBgBlack cursor-pointer opacity-90 transition-all duration-300 z-100 w-full h-full right-0'
+          ? 'block fixed bg-pfBgBlack cursor-pointer opacity-90 transition-all duration-300 z-500 w-full h-full right-0'
           : 'hidden '
       }`}></div>
   );

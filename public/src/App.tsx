@@ -31,8 +31,8 @@ function App() {
   return (
     <main>
       <div className=' max-w-[80%] mx-auto my-0 mt-12'>
-        <NavBar />
         <Overlay />
+        <NavBar />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/portfolio' element={<Portfolio />} />

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Damtrix from '../../assets/images/damtrix.jpeg';
 import { useAppSelector } from '../../store/hook';
 import { userSelector } from '../../store/user/userSlice';
 

@@ -5,7 +5,11 @@ import hamburger from '../../assets/images/hamburger.svg';
 import closeNav from '../../assets/images/close.svg';
 import { useAppDispatch, useAppSelector } from '../../store/hook';
 import { userSelector } from '../../store/user/userSlice';
-import { navBarSelector, toggleNavbar } from '../../store/navBar/navBarSlice';
+import {
+  navBarSelector,
+  toggleNavbar,
+  setNavbarState,
+} from '../../store/navBar/navBarSlice';
 
 export const NavBar = () => {
   const location = useLocation();
@@ -40,7 +44,7 @@ export const NavBar = () => {
                 : 'w-72 hidden md:flex justify-between text-blackBlue'
             }`}>
             <NavLink
-              onClick={() => dispatch(toggleNavbar())}
+              onClick={() => dispatch(setNavbarState(false))}
               className={` font-normal font-PublicSans text-xs leading-4 uppercase transition-all hover: ease-in-out duration-500 hover:translate-y-1 ${
                 location.pathname == '/' ? 'active: text-pfGreen' : ''
               }`}
@@ -48,7 +52,7 @@ export const NavBar = () => {
               Home
             </NavLink>
             <NavLink
-              onClick={() => dispatch(toggleNavbar())}
+              onClick={() => dispatch(setNavbarState(false))}
               className={` font-normal font-PublicSans text-xs leading-4 uppercase transition-all hover:ease-in-out duration-500 hover:translate-y-1 ${
                 location.pathname == '/portfolio' ? 'active: text-pfGreen' : ''
               }`}
@@ -56,7 +60,7 @@ export const NavBar = () => {
               Portfolio
             </NavLink>
             <NavLink
-              onClick={() => dispatch(toggleNavbar())}
+              onClick={() => dispatch(setNavbarState(false))}
               className={` font-normal font-PublicSans text-xs leading-4 uppercase transition hover:ease-in-out duration-500 hover:translate-y-1 ${
                 location.pathname == '/contact' ? 'active: text-pfGreen' : ''
               }`}
